@@ -83,13 +83,13 @@ public class EmergencyCardPage extends BasePage {
 	private WebElement backUpdateEcardPage;
 	
 	@FindBy(xpath ="//div[contains(text(),'Ambar Clocr')]")
-	WebElement validateContactAdd;
+	private WebElement validateContactAdd;
 	
 	@FindBy(xpath = "//span[contains(@class,'download')]")
-	WebElement downloadMenu;
+	private WebElement downloadMenu;
 	
 	@FindBy(xpath ="//span[contains(@class,'trash')]")
-	WebElement deleteMenu;
+	private WebElement deleteMenu;
 	
 	public String GetHeaderText() {
 		return getText(pageHeader);

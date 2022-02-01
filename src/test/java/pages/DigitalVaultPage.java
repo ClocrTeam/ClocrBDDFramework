@@ -274,7 +274,8 @@ private WebDriver driver;
 	}
 
 	public DigitalVaultPage uploadfile(String path) {
-		executeJavascript("document.getElementsByTagName('input')[1].style.display = 'block'");
+		String showInput = "document.getElementsByTagName('input')[1].style.display = 'block'";
+		executeJavaScript(showInput);
 		sendKeys(browseBtnOfIdDocuments, path);
 		click(saveIdDocumentBtn);
 		return this;

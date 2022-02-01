@@ -35,6 +35,9 @@ public class DashboardPage extends BasePage {
 	@FindBy(xpath = "//span[contains(text(),'Personal')]//following::b[contains(text(),'Update Info')][1]")
 	private WebElement updateInfoTxt;
 	
+	@FindBy(xpath = "//span[normalize-space()='Digital Vault']")
+	private WebElement digitalVault;
+	
 	public String getHeaderText() {
 		return getText(pageHeader);
 	}
@@ -53,6 +56,12 @@ public class DashboardPage extends BasePage {
 	public PersonalinfoPage clickUpdateInfo() {
 		click(updateInfoTxt);
 		return new PersonalinfoPage(driver);
+	}
+	
+	public DashboardPage clickDigitalVault() {
+		click(digitalVault);
+		return this;
+		
 	}
 	
 	public DashboardPage createEmergencyCard() throws Exception {
@@ -74,4 +83,5 @@ public class DashboardPage extends BasePage {
 		}
 		return new DashboardPage(driver);
 	}
+	
 }

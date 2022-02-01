@@ -48,6 +48,10 @@ public class BasePage {
 		e.click();
 		log().info("clicked on" + e);
 	}
+	public void executeJavaScript(String cmd) {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript(cmd);
+	}
 	public void clickByJavaScript(WebElement e) {
 		waitForVisibility(e);
 		JavascriptExecutor js = (JavascriptExecutor)driver;

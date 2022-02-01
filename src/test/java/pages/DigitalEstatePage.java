@@ -22,4 +22,6 @@ public class DigitalEstatePage extends BasePage {
 	public String getPageTitle() {
 		return getText(pageTitle);
 	}
+	
+	
 }

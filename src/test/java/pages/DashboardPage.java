@@ -20,9 +20,6 @@ public class DashboardPage extends BasePage {
 	@FindBy(xpath = "//h3[contains(text(),'Emergency Card')]")
 	private WebElement eCard;
 	
-	@FindBy(xpath = "//span[contains(text(),'×')]")
-	private WebElement closeBtn;
-	
 	@FindBy(xpath = "//a[contains(text(),'Create')]")
 	private WebElement createNewECard;
 
@@ -45,10 +42,6 @@ public class DashboardPage extends BasePage {
 		return getText(pageTitle);
 	}
 	
-	public DashboardPage clickCloseBtn() {
-		click(closeBtn);
-		return this;
-	}
 	public DashboardPage clickEmergencyCard() {
 		click(eCard);
 		return this;

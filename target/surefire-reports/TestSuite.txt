@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 22.535 s <<< FAILURE! - in TestSuite
+testRunners.MyTestRunner.scenario["Login with valid user name and otp", "Optional[Login functionality]"](1)  Time elapsed: 0.259 s  <<< FAILURE!
+java.lang.NullPointerException
+

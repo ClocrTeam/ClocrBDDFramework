@@ -9,7 +9,6 @@ import pages.DashboardPage;
 import pages.DigitalEstatePage;
 import pages.LoginPage;
 import pages.PersonalinfoPage;
-import pages.SubsManagementPage;
 import utilities.DriverManager;
 
 public class dashboardStepDef extends DriverManager{
@@ -41,30 +40,30 @@ public class dashboardStepDef extends DriverManager{
     
     @Then("User should be redirected to dashboard page")
     public void nagivateDashboardPage() {
-    	new SubsManagementPage(driver).ClickDashboard();
+    	new DashboardPage(driver).ClickDashboard();
     }
     
     @Then("User should be redirected to 'Your Digital Estate' page")
     public void navigateDigitalEstatePage() {
-    	new SubsManagementPage(driver).ClickDigitalEstate();
+    	new DashboardPage(driver).ClickDigitalEstate();
     	Assert.assertEquals( new DigitalEstatePage(driver).getHeaderText(),"Last Update:");
     }
 
     @Then("User should redirected to 'Digital Vault' page")
     public void navigateDigitalVaultPage() {
-    	new SubsManagementPage(driver).ClickDigitalVault();
+    	new DashboardPage(driver).ClickDigitalVault();
     	//Assert.assertEquals("Digital Vault clocr", new DigitalVaultPage(driver).GetPageTitle());
     }
     
     @Then("User should redirected to 'Time Capsule' page")
     public void navigateTimeCapsulePage() {
-    	new SubsManagementPage(driver).ClickTimeCapsule();
+    	new DashboardPage(driver).ClickTimeCapsule();
     	//Assert.assertEquals("Time Capsule clocr", new TimeCapsulePage(driver).GetPageTitle());
     }
     
     @Then("User should redirected to 'My Contacts' page")
     public void navigateMyContactsPage() {
-    	new SubsManagementPage(driver).ClickMyContacts();
+    	new DashboardPage(driver).ClickMyContacts();
     	//Assert.assertEquals("Contacts",new MyContactsPage(driver).GetHeaderText());
     }
     

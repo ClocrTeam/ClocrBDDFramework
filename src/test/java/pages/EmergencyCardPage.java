@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EmergencyCardPage extends BasePage 
 {
@@ -88,6 +89,15 @@ public class EmergencyCardPage extends BasePage
 	
 	@FindBy(xpath ="//span[contains(@class,'trash')]")
 	private WebElement deleteMenu;
+	
+	@FindBy(xpath = "//div[contains(text(), 'deleted')]")
+	private WebElement deleteAlert;
+	
+	@FindBy(xpath = "//button[contains(text(),' Download Card')]")
+	private WebElement downloadCardButtonElement;
+	
+	@FindBy(xpath = "//button[contains(text(),' Download Card')]")
+	private WebElement yestButtonElement;
 	
 	public String GetHeaderText() {
 		return getText(pageHeader);
@@ -287,9 +297,58 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-//	public EmergencyCardPage clickOnDownloadCard()
-//	{
-//		d
-//		return this;
-//	}
+	public EmergencyCardPage clickOnDownloadCard() throws Exception
+	{
+		clickOnActions();
+		
+		click(downloadMenu);
+		
+		return this;
+	}
+	
+	public EmergencyCardPage validateDownloadPageValidation()
+	{
+		if(isDisplayed(emergencyCardServicePageHeader))
+		{
+			log().info("Download Pop up open successfully");
+		}
+		else
+		{
+			log().error("Unable to open Download pop up");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnDownloadCardButton() throws Exception
+	{
+		click(downloadCardButtonElement);
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnDeleteCard() throws Exception
+	{
+		clickOnActions();
+		
+		click(deleteMenu);
+		
+		click(yestButtonElement);
+		
+		return this;
+	}
+	
+	public EmergencyCardPage validateDeleteAlert()
+	{
+		wait.until(ExpectedConditions.alertIsPresent());
+		
+		if(isDisplayed(deleteAlert))
+		{
+			log().info("Card deleted successfully");
+		}
+		else
+		{
+			log().error("Card can not delete.");
+		}
+		return this;
+	}
+	
 }

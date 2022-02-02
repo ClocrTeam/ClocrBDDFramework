@@ -85,4 +85,34 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).pageHeaderEmergencyCardPage();
     }
 	
+	@When ("Click on Action, click on Download menu")
+	public void clickOnDownloadMenu() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDownloadCard();
+	}
+	
+	@Then ("Download pop up should open")
+	public void validateDownloadPopUp()
+	{
+		new EmergencyCardPage(driver).validateDownloadPageValidation();
+	}
+	
+	@When ("Click on Download Card button, then it should download the Card")
+	public void clickOnDownloadCardButton() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDownloadCardButton();
+	}
+	
+	@When("Click on Action, click on Delete menu and click on Yes button")
+	public void clickOnDeleteButton() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDeleteCard();
+	}
+	
+	@Then ("Emergency Card deleted alert should show")
+	public void validateAlert()
+	{
+		new EmergencyCardPage(driver).validateDeleteAlert();
+	}
+	
 }

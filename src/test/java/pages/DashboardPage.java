@@ -118,7 +118,7 @@ public class DashboardPage extends BasePage {
 				new EmergencyCardPage(driver).pickContact();
 				new EmergencyCardPage(driver).createNewECard();
 				if(isDisplayed(ecardAlert)) {
-					log().info("New Emergency card is created successfully");
+					log().info("New Emergency card is created successfully!");
 				}
 		}else {
 			log().info("Unknow Error: Could be created");

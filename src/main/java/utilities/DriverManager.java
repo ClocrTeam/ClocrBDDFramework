@@ -41,10 +41,7 @@ public class DriverManager {
 
 	@AfterMethod
 	public static void tearDown() {
-		if (driver != null) {
-		driver.close();
 		driver.quit();
 	}
 	}
-}
 

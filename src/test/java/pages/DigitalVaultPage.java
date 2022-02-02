@@ -9,16 +9,12 @@ private WebDriver driver;
 	public DigitalVaultPage(WebDriver driver) {
 		super(driver);
 	}
-	@FindBy(xpath = "")
+	@FindBy(xpath = "//span[@class='main-app-title']")
 	private WebElement pageHeader;
 	
 	@FindBy(tagName = "title")
 	private WebElement pageTitle;
 	
-	public String GetHeaderText() {
-		return getText(pageHeader);
-	}
-	public String GetPageTitle() {
-		return getText(pageTitle);
-	}
+	@FindBy(xpath = "//span[normalize-space()='Dashboard']")
+	private WebElement dashboard;
 }

@@ -6,9 +6,9 @@ Feature: Emergency card
 
 Background: User should be on Dashboard page
 	Given Browser should be open and user should be 'dev.clocr.com' site
-	When Enter user name as "natasha.clocr@yopmail.com"
+	When Enter user name as "ghj@yopmail.com"
 	And click on Proceed button
-	And enter correct "Welcome@123"
+	And enter correct "Rekha@1234"
 	And Click on Login button
 	
 Scenario Outline: User should navigate to emergency card page
@@ -35,4 +35,4 @@ Scenario Outline: User should navigate to emergency card page
 
 		Examples:
 			|url| email | password | country |
-  		|dev.clocr.com | natasha.clocr@yopmail.com | Welcome@123 | Spain |
+  		|dev.clocr.com | ghj@yopmail.com | Rekha@1234 | Spain |

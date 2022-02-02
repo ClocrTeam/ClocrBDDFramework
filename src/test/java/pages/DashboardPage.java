@@ -17,6 +17,9 @@ public class DashboardPage extends BasePage {
 	@FindBy(xpath = "//span[contains(text(),'Dashboard')]")
 	private WebElement dashboard;
 	
+	@FindBy(xpath = "//h3[contains(text(),'Digital Estate')]")
+	private WebElement DigitalEstate;
+	
 	@FindBy(xpath = "//h3[contains(text(),'Emergency Card')]")
 	private WebElement eCard;
 	
@@ -53,6 +56,10 @@ public class DashboardPage extends BasePage {
 		click(eCard);
 		return this;
 	}
+	public DashboardPage clickDigitalEstate() {
+		click(DigitalEstate);
+		return this;
+	}
 	public DashboardPage validatePageHeader() {
 		isDisplayed(pageHeader);
 		return this;
@@ -81,4 +88,5 @@ public class DashboardPage extends BasePage {
 		}
 		return new DashboardPage(driver);
 	}
+	
 }

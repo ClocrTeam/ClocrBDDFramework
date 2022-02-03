@@ -93,6 +93,25 @@ private WebDriver driver;
 	@FindBy(xpath = "//span[normalize-space()='Share']")
 	private WebElement shareIdDocuments;
 	
+	@FindBy(xpath = "//h5[contains(text(),'ID Documents')]")
+	private WebElement shareIdocumentsTitle;
+	
+	@FindBy(xpath = "//label[contains(text(),'Select')]/preceding::p-dropdown/child::div[1]")
+	private WebElement shareIdDocumentsDropDown;
+	
+	@FindBy(xpath = "//p-dropdownitem[1]//child::li[1]")
+	private WebElement shareIdDocumentsContact;
+	
+	@FindBy(xpath = "//label[contains(text(),'Download')]//preceding::p-checkbox//descendant::input[@id='Download']")
+	private WebElement shareDownloadBoxIdDocuments;
+	
+	@FindBy(xpath = "//label[contains(text(),'Upload')]//preceding::p-checkbox[1]/descendant::input[@id='Upload']")
+	private WebElement shareUploadBoxIdDocuments;
+	
+	@FindBy(xpath = "//button[contains(text(),'Share')]")
+	private WebElement sharePopUpBtn;
+	
+	
 	public String getCreateFolderTitleText() {
 		return getText(createFolderTitle);
 	}
@@ -320,6 +339,41 @@ private WebDriver driver;
 
 	public DigitalVaultPage clickShareIdDocuments() {
 		click(shareIdDocuments);
+		return this;
+		
+	}
+
+	public DigitalVaultPage validateShareIdDocumentsTitle() {
+		
+		if(isDisplayed(shareIdocumentsTitle)) {
+			log().info("Validate Share popup ID Documents");
+		}
+		else
+			log().info("Not Validate the Share popup of ID Documents");
+		
+		return this;
+		
+		
+	}
+
+	public DigitalVaultPage chooseContactForIdDocuments() {
+		click(shareIdDocumentsDropDown);
+		click(shareIdDocumentsContact);
+		return this;
+		
+		
+	}
+
+	public DigitalVaultPage checkUploadAndDownloadIdDocuments() {
+		click(shareDownloadBoxIdDocuments);
+		click(shareUploadBoxIdDocuments);
+		return this;
+		
+		
+	}
+
+	public DigitalVaultPage clickShareBtnIdDocuments() {
+		click(sharePopUpBtn);
 		return this;
 		
 	}

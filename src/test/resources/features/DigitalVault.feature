@@ -49,8 +49,7 @@ Scenario Outline: User should navigate to Digital Vault page
 		When Choose contact from dropdown for Id Documents
 		When Check Upload and Download checkbox for Id Documents
 		When Click Share button ID documents popup
-			
-		
+
 #		When Click on Dashboard icon
 #		Then User should redirects to Dashboard page
 		Then Close the browser

@@ -151,6 +151,28 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).clickShareIdDocuments();
 	}
 	
+	@When("ID documents share pop up should open")
+	public void validateShareIdDocumentsTitle() throws InterruptedException {
+		new DigitalVaultPage(driver).validateShareIdDocumentsTitle();
+	}
+	
+	@When("Choose contact from dropdown for Id Documents")
+	public void chooseContactForIdDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).chooseContactForIdDocuments();
+	}
+	
+	@When("Check Upload and Download checkbox for Id Documents")
+	public void checkUploadAndDownloadIdDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).checkUploadAndDownloadIdDocuments();
+	}
+	
+	@When("Click Share button ID documents popup")
+	public void clickShareBtnIdDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).clickShareBtnIdDocuments();
+	}
+	
+	
+	
 //	@When("Click on Dashboard icon")
 //	public void click_dashboard_icon()  {
 //		// Thread.sleep(2000);

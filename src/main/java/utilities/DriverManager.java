@@ -14,7 +14,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class DriverManager {
 	private static ConfigFileReader configReader;
 	public static WebDriver driver;
-	@Parameters({"browserName"})
+	
 	@BeforeMethod
 	public static void setUp() {
 		configReader = new ConfigFileReader();
@@ -41,10 +41,7 @@ public class DriverManager {
 
 	@AfterMethod
 	public static void tearDown() {
-		if (driver != null) {
-		driver.close();
 		driver.quit();
-	}
 	}
 }
 

@@ -45,6 +45,7 @@ Scenario Outline: User should navigate to Digital Vault page
 		When Click on Edit of ID documents folder
 		Then ID documents edit menu should open
 		When Click on Share document of ID documents	
+		
 #		When Click on Dashboard icon
 #		Then User should redirects to Dashboard page
 		Then Close the browser

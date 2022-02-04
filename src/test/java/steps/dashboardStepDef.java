@@ -15,7 +15,7 @@ public class dashboardStepDef extends DriverManager{
 	
 	@Given("Browser should be open and user should be 'dev.clocr.com' site")
     public void i_enter_email_() {
-		setUp();
+//		setUp();
     }
 	
 	@When("Enter user name as {string}")
@@ -81,6 +81,6 @@ public class dashboardStepDef extends DriverManager{
     }
     @Then("Close the browser")
     public void Close() {
-    	tearDown();
+//    	tearDown();
     }
 }

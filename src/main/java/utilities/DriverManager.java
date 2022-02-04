@@ -16,7 +16,7 @@ public class DriverManager {
 	public static WebDriver driver;
 
 	@BeforeMethod
-	public static void setUp() {
+	public void setUp() {
 		configReader = new ConfigFileReader();
 		switch(configReader.getBrowserName()){
 		case "chrome":
@@ -40,7 +40,7 @@ public class DriverManager {
 	}
 
 	@AfterMethod
-	public static void tearDown() {
+	public void tearDown() {
 		driver.quit();
 	}
 }

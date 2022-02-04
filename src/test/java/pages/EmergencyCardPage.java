@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EmergencyCardPage extends BasePage 
 {
@@ -96,8 +97,8 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//button[contains(text(),' Download Card')]")
 	private WebElement downloadCardButtonElement;
 	
-	@FindBy(xpath = "//button[contains(text(),' Download Card')]")
-	private WebElement yestButtonElement;
+	@FindBy(xpath = "//button[contains(text(),'Yes ')]")
+	private WebElement yesButtonElement;
 	
 	public String GetHeaderText() {
 		return getText(pageHeader);
@@ -331,20 +332,30 @@ public class EmergencyCardPage extends BasePage
 		
 		click(deleteMenu);
 		
-		click(yestButtonElement);
+		click(yesButtonElement);
 		
 		return this;
 	}
 	
 	public EmergencyCardPage validateDeleteAlert()
 	{
-		wait.until(ExpectedConditions.alertIsPresent());
+//		if(isDisplayed(deleteAlert))
+//		{
+//			log().info("Card deleted successfully");
+//		}
+//		else
+//		{
+//			log().error("Card can not delete.");
+//		}
 		
-		if(isDisplayed(deleteAlert))
+		try
 		{
-			log().info("Card deleted successfully");
+			if(isDisplayed(registerTxt))
+				{
+					log().info("Card deleted successfully");
+				}
 		}
-		else
+		catch(Exception e)
 		{
 			log().error("Card can not delete.");
 		}

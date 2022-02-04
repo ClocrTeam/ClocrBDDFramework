@@ -13,11 +13,6 @@ import utilities.DriverManager;
 
 public class dashboardStepDef extends DriverManager{
 	
-	@Given("Browser should be open and user should be 'dev.clocr.com' site")
-    public void i_enter_email_() {
-//		setUp();
-    }
-	
 	@When("Enter user name as {string}")
     public void i_enter_email_as(String username) throws InterruptedException {
 		new LoginPage(driver).enterUserName(username);
@@ -78,9 +73,5 @@ public class dashboardStepDef extends DriverManager{
     @Then("User should redirects to Personal workflow page")
     public void validatePageHeader() throws InterruptedException {
     	new PersonalinfoPage(driver).validatePageHeader();
-    }
-    @Then("Close the browser")
-    public void Close() {
-//    	tearDown();
     }
 }

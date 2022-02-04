@@ -5,7 +5,6 @@
 Feature: Digital Vault
 
 Background: User should be on Dashboard page
-	Given Browser should be open and user should be 'dev.clocr.com' site
 	When Enter user name as "pankaj.clocr@yopmail.com"
 	And click on Proceed button
 	And enter correct "Welcome@123"
@@ -17,14 +16,14 @@ Scenario Outline: User should navigate to Digital Vault page
 		When Click Create folder button
 		Then Creating folder popup should be open
 		When Choose root option
-		When Enter name of the folder "awerwd1243"
+		When Enter name of the folder "New Folder"
 		When Click Create button
 		Then Folder created alert should show
 		When Click on Edit folder
 		Then Edit menu should open
 		When Click on Rename 
 		Then Rename my folder pop up should open
-		When Rename name of the folder "renamed_folder"
+		When Rename name of the folder "RN Folder"
 ##	Then Rename folder alert should show
 		When Click on My Docs icon
 		Then Open expanded My Docs folders
@@ -52,8 +51,7 @@ Scenario Outline: User should navigate to Digital Vault page
 
 #		When Click on Dashboard icon
 #		Then User should redirects to Dashboard page
-		Then Close the browser
-
+		
 		Examples:
-			|url| email | password |
-  		|dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 |
+			| email | password |
+  		| pankaj.clocr@yopmail.com | Welcome@123 |

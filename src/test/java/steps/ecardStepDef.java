@@ -109,12 +109,10 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).clickOnDeleteCard();
 	}
 	
-	@Then ("Emergency Card deleted alert should show")
+	@Then ("Emergency Card deleted should be deleted")
 	public void validateAlert()
 	{
 		new EmergencyCardPage(driver).validateDeleteAlert();
-	}
-	
-	
+	}	
 	
 }

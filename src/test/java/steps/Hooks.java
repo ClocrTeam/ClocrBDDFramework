@@ -17,14 +17,14 @@ import utilities.DriverManager;
 public class Hooks {
 
 	@Before
-	public void initialize(){
+	public static void initialize(){
 		new DriverManager();
-		new DriverManager().setUp();
+		DriverManager.setUp();
 	}
 
 	@After
 	public static void captureScreenshot(Scenario scenario) throws IOException {
-		new DriverManager();
+
 		if(scenario.isFailed()){
 			try {
 				String testName = scenario.getName();

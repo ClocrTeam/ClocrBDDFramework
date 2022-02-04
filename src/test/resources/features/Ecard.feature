@@ -5,7 +5,6 @@
 Feature: Emergency card
 
 Background: User should be on Dashboard page
-	Given Browser should be open and user should be 'dev.clocr.com' site
 	When Enter user name as "natasha.clocr@yopmail.com"
 	And click on Proceed button
 	And enter correct "Welcome@123"
@@ -32,10 +31,10 @@ Scenario Outline: User should navigate to emergency card page
 #		Then Download pop up should open to Download Sticker
 #		When Click on Download Sticker button, then it should download the Sticker
 		When Click on Action, click on Delete menu and click on Yes button
-		Then Emergency Card deleted alert should show
+		Then Emergency Card deleted should be deleted
 	
 	
 
 		Examples:
-			|url| email | password | country |
-  		|dev.clocr.com | natasha.clocr@yopmail.com | Welcome@123 | Spain |
+			| email | password | country |
+  		| natasha.clocr@yopmail.com | Welcome@123 | Spain |

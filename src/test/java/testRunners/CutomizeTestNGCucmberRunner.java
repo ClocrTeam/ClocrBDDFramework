@@ -52,29 +52,4 @@ public TestNGCucumberRunner testNGCucumberRunner;
         }
         testNGCucumberRunner.finish();
     }
-    @After
-    public static void captureScreenshot(Scenario scenario, WebDriver driver) throws IOException {
-		if(scenario.isFailed()) {
-			try {
-				 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		            String testName = scenario.getName();
-		            scenario.attach(screenshot, "image/png", testName);
-			} catch (WebDriverException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	
-	private static String getcurrentdateandtime() {
-		String str = null;
-		try {
-			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss:SSS");
-			Date date = new Date();
-			str = dateFormat.format(date);
-			str = str.replace(" ", "").replaceAll("/", "").replaceAll(":", "");
-		} catch (Exception e) {
-		}
-		return str;
-	}
 }

@@ -25,9 +25,12 @@ Scenario Outline: User should navigate to emergency card page
 		Then Contacts should add
 		When Click on Back button
 		Then After click on Back button it should redirects to Your Emergency Card page
-		When Click on Action, click on Download menu
-		Then Download pop up should open
+		When Click on Action, click on Download menu for Download Card
+		Then Download pop up should open to Download Card
 		When Click on Download Card button, then it should download the Card
+#		When Click on Action, click on Download menu for Download Sticker
+#		Then Download pop up should open to Download Sticker
+#		When Click on Download Sticker button, then it should download the Sticker
 		When Click on Action, click on Delete menu and click on Yes button
 		Then Emergency Card deleted alert should show
 	

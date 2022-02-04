@@ -17,10 +17,10 @@ Scenario Outline: User should navigate to Digital Vault page
 		Then Delete folder new folder "new_folder"
 		When Rename My Kids folder to "rename_folder"
 		Then Rollback to My Kids folder "My Kids"
-		When Upload documents to ID documents folder
-		Then Add Notes to ID documents folder "note"
-		When Share ID documents folder
-		Then UnShare ID documents folder
+#		When Upload documents to ID documents folder
+#		Then Add Notes to ID documents folder "note"
+#		When Share ID documents folder
+#		Then UnShare ID documents folder
 
 		Examples:
 			| email | password |

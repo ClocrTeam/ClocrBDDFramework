@@ -245,7 +245,7 @@ private WebDriver driver;
 		checkElementIsDisplayed("Add Document popup ID documents", uploadPopUpTitle);
 		String showInput = "document.getElementsByTagName('input')[1].style.display = 'block'";
 		executeJavaScript(showInput);
-		sendKeys(browseBtnOfIdDocuments, "C:/Users/Amalsan/Downloads/Adv.xlsx");
+		sendKeys(browseBtnOfIdDocuments, "./src/test/resources/data/Clocr.pdf");
 		click(saveIdDocumentBtn);
 		return this;
 		

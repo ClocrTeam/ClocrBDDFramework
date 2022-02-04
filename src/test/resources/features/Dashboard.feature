@@ -22,7 +22,6 @@ Feature: Dashboard page scenarios
   #    |dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 | 
 	
 Scenario Outline: User get a link Create your Emergency Card
-	Given Browser should be open and user should be 'dev.clocr.com' site
 	When Enter user name as "<email>"
 	And click on Proceed button
 	And enter correct "<password>"
@@ -33,9 +32,8 @@ Scenario Outline: User get a link Create your Emergency Card
 	When Click on Update Info of Personal menu
 	Then User should redirects to Personal workflow page
 	Then User should be redirected to dashboard page
-	Then Close the browser
-	
+
 
 	Examples:
-      |url| email | password |
-      |dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 | 
+      | email | password |
+      | pankaj.clocr@yopmail.com | Welcome@123 | 

@@ -85,13 +85,13 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).pageHeaderEmergencyCardPage();
     }
 	
-	@When ("Click on Action, click on Download menu")
+	@When ("Click on Action, click on Download menu for Download Card")
 	public void clickOnDownloadMenu() throws Exception
 	{
 		new EmergencyCardPage(driver).clickOnDownloadCard();
 	}
 	
-	@Then ("Download pop up should open")
+	@Then ("Download pop up should open to Download Card")
 	public void validateDownloadPopUp()
 	{
 		new EmergencyCardPage(driver).validateDownloadPageValidation();
@@ -109,10 +109,10 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).clickOnDeleteCard();
 	}
 	
-	@Then ("Emergency Card deleted alert should show")
+	@Then ("Emergency Card deleted should be deleted")
 	public void validateAlert()
 	{
 		new EmergencyCardPage(driver).validateDeleteAlert();
-	}
+	}	
 	
 }

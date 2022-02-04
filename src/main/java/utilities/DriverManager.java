@@ -16,7 +16,7 @@ public class DriverManager {
 	public static WebDriver driver;
 
 	@BeforeMethod
-	public static void setUp() {
+	public static void  setUp() {
 		configReader = new ConfigFileReader();
 		switch(configReader.getBrowserName()){
 		case "chrome":

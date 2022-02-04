@@ -5,7 +5,6 @@
 Feature: Digital Vault
 
 Background: User should be on Dashboard page
-	Given Browser should be open and user should be 'dev.clocr.com' site
 	When Enter user name as "pankaj.clocr@yopmail.com"
 	And click on Proceed button
 	And enter correct "Welcome@123"
@@ -22,8 +21,7 @@ Scenario Outline: User should navigate to Digital Vault page
 		Then Add Notes to ID documents folder "note"
 		When Share ID documents folder
 		Then UnShare ID documents folder
-		Then Close the browser
 
 		Examples:
-			|url| email | password |
-  		|dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 |
+			| email | password |
+  		| pankaj.clocr@yopmail.com | Welcome@123 |

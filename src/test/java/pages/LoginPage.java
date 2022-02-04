@@ -1,7 +1,10 @@
 package pages;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 public class LoginPage extends BasePage{
 
@@ -43,7 +46,8 @@ public class LoginPage extends BasePage{
 		return this;
 	}
 	
-	public LoginPage enterPassword(String password) {
+	public LoginPage enterPassword(String password) throws Exception {
+		Thread.sleep(3000);
 		sendKeys(passwordBtn, password);
 		return this;
 	}

@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +16,7 @@ public class EmergencyCardPage extends BasePage
 	private WebDriver driver;
 	public EmergencyCardPage(WebDriver driver) {
 		super(driver);
+		this.driver = driver;
 	}
 	@FindBy(xpath = "//div[contains(text(),'Your Emergency Card')]")
 	private WebElement pageHeader;
@@ -32,6 +32,15 @@ public class EmergencyCardPage extends BasePage
 	
 	@FindBy(xpath = "//a[contains(text(),'Register Your')]")
 	private WebElement registerTxt;
+	
+	@FindBy(xpath ="//span[contains(text(),'Create or Register Your Emergency Card')]")
+	private WebElement createOrRegisterPageHeader;
+	
+	@FindBy(xpath = "//app-wallet-card//following::div[1]/a[contains(text(),'Register')]")
+	private WebElement registerYourCardLink;
+	
+	@FindBy(xpath ="//span[contains(text(),'Register Your Emergency Card')]")
+	private WebElement registerPageHeader;
 	
 	@FindBy(xpath = "//span[contains(text(),' Jignesh Clocr ')]//preceding::div[@role='checkbox']")
 	private WebElement contactCheckbox;
@@ -88,6 +97,9 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//span[contains(@class,'download')]")
 	private WebElement downloadMenu;
 	
+	@FindBy(xpath ="//span[contains(text(),'Sticker')]")
+	WebElement stickerTab;
+	
 	@FindBy(xpath ="//span[contains(@class,'trash')]")
 	private WebElement deleteMenu;
 	
@@ -97,8 +109,26 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//button[contains(text(),' Download Card')]")
 	private WebElement downloadCardButtonElement;
 	
+	@FindBy(xpath = "//button[contains(text(),' Download Sticker')]")
+	private WebElement downloadStickerButtonElement;
+	
+	@FindBy(xpath = "//input[contains(@id,'cardNumber')]")
+	WebElement cardIdNumber;
+	
+	@FindBy(xpath = "//clocr-icon[contains(@color,'success')]")
+	WebElement successIcon;
+	
+	@FindBy(xpath = "//span[contains(text(),' Meera Clocr ')]//preceding::div[1][@role='checkbox']")
+	WebElement contactMeera;
+	
 	@FindBy(xpath = "//button[contains(text(),'Yes ')]")
 	private WebElement yesButtonElement;
+	
+	@FindBy(xpath = "//button[contains(text(),'Register Emergency Card')]")
+	WebElement registerEmergencyCardButton;
+	
+	@FindBy(xpath = "//div[contains(text(),'Registered')]")
+	WebElement registered;
 	
 	public String GetHeaderText() {
 		return getText(pageHeader);
@@ -147,14 +177,38 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	
-	public EmergencyCardPage createEmergencyCard() throws Exception 
+	public EmergencyCardPage clickOnCreateOrRegisterCardLink() throws Exception 
 	{
 		Thread.sleep(3000);
 		click(registerTxt);
+		return this;
+	}
+	
+	public EmergencyCardPage validateCreateorRegisterYourEmergencyCardPage(String pageHeader)
+	{
+		if(isDisplayed(createOrRegisterPageHeader))
+		{
+			log().info("Redirecting to 'Create or Register Your Emergency Card' page");
+		}
+		else
+		{
+			log().error("Wrong redirection");
+		}
+		return this;
+	}
+	
+	
+	public EmergencyCardPage createEmergencyCard() throws Exception 
+	{
 		clickPickContact();
 		pickContact();
 		createNewECard();
+		
+		return this;
+	}
+	
+	public EmergencyCardPage validateCardGenerate()
+	{
 		if(isDisplayed(ecardAlert)) 	
 		{
 			log().info("New Emergency card is created successfully");
@@ -169,8 +223,8 @@ public class EmergencyCardPage extends BasePage
 	public EmergencyCardPage clickOnActions() throws Exception
 	{
 		Thread.sleep(3000);
-		click(moreOptionPersonal);		
-		
+		clickByJavaScript(moreOptionPersonal);	
+				
 		return this;
 	}
 	
@@ -202,11 +256,6 @@ public class EmergencyCardPage extends BasePage
 		sendKeys(countrySearchText, country);
 		submitKeys(countrySearchText, Keys.ARROW_DOWN);
 		submitKeys(countrySearchText, Keys.ENTER);
-	
-		
-//		WebElement countryClick = driver.findElement(By.xpath("//div[contains(text(),'"+country+"')]"));
-		
-//		click(countryClick);
 		
 		return this;
 	}
@@ -302,8 +351,15 @@ public class EmergencyCardPage extends BasePage
 	{
 		clickOnActions();
 		
-		click(downloadMenu);
+		Thread.sleep(2000);
+		clickByJavaScript(downloadMenu);
 		
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnStickerTab()
+	{
+		click(stickerTab);
 		return this;
 	}
 	
@@ -320,9 +376,94 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	public EmergencyCardPage clickOnDownloadCardButton() throws Exception
+	public EmergencyCardPage clickOnDownloadCardButton(String download) throws Exception
 	{
-		click(downloadCardButtonElement);
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		WebElement downloadButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),' "+download+"')]")));
+		downloadButton.click();
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnRegisterYourCardLink()
+	{
+		click(registerYourCardLink);
+		return this;
+	}
+	
+	public EmergencyCardPage validateRegisterYourEmergencyCardPage()
+	{
+		if(isDisplayed(registerPageHeader))
+		{
+			log().info("Redirecting to 'Register Your Emergency Card' page");
+		}
+		else
+		{
+			log().error("Wrong redirection");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage enterCardId(String cardId)
+	{
+		sendKeys(cardIdNumber, cardId);
+		return this;
+	}
+	
+	public EmergencyCardPage validateRequestEmergencyCardService(String registerCountry)
+	{
+		if(isDisplayed(successIcon))
+		{
+			log().info("You have requested to Emergency card service for "+registerCountry+"");
+		}
+		else
+		{
+			log().error("Unable to request a card.");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage addContactForRegister()
+	{
+		click(contactMeera);
+		click(addBtn);
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnRegisterCardButton()
+	{
+		click(registerEmergencyCardButton);
+		
+		return this;
+	}
+	
+	public EmergencyCardPage registerACard(String cardId, String registerCountry) throws Exception
+	{
+		selectCountry(registerCountry);
+		
+		ecardServiceOption();
+		
+		validateRequestEmergencyCardService(registerCountry);
+		enterCardId(cardId);
+		
+		clickPickContact();
+		
+		addContactForRegister();
+		
+		clickOnRegisterCardButton();
+		
+		return this;
+	}
+	
+	public EmergencyCardPage validateRegister()
+	{
+		if(isDisplayed(registered))
+		{
+			log().info("Your Emergency Card Registered successfully");
+		}
+		else
+		{
+			log().error("Unable to register a card");
+		}
 		return this;
 	}
 	
@@ -352,14 +493,14 @@ public class EmergencyCardPage extends BasePage
 		{
 			if(isDisplayed(registerTxt))
 				{
-					log().info("Card deleted successfully");
+					log().info("Emergency Card deleted successfully");
 				}
 		}
 		catch(Exception e)
 		{
-			log().error("Card can not delete.");
+			log().error("Emergency Card can not delete.");
 		}
 		return this;
-	}
+	} 
 	
 }

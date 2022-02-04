@@ -24,7 +24,7 @@ public class dashboardStepDef extends DriverManager{
     }
 	
     @And("enter correct {string}")
-    public void iEnterPasswordAs(String password) {
+    public void iEnterPasswordAs(String password) throws Exception {
         new LoginPage(driver).enterPassword(password);
     }
 

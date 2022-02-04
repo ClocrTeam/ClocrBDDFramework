@@ -2,7 +2,6 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.DashboardPage;
 import pages.EmergencyCardPage;
 import utilities.DriverManager;
 
@@ -21,7 +20,25 @@ public class ecardStepDef extends DriverManager {
 	@When("Click on Create your Emergency Card")
 	public void createEmergnecy() throws Exception
 	{
+		new EmergencyCardPage(driver).clickOnCreateOrRegisterCardLink();
+		
+	}
+	
+	@Then("User should redirects to Create or Register Your Emergency Card page")
+	public void validateCreateYourEmergencyCardPage()
+	{
+		new EmergencyCardPage(driver).validateCreateorRegisterYourEmergencyCardPage("Create or Register Your Emergency Card");
+	}
+	
+	@When("Add details and click on Create Emergency Card button")
+	public void addDetailsAndClickOnCreateEmergencyCardButton() throws Exception
+	{
 		new EmergencyCardPage(driver).createEmergencyCard();
+	}
+	@Then ("Emergency Card should generate")
+	public void EmergencyCardGenerate()
+	{
+		new EmergencyCardPage(driver).validateCardGenerate();
 	}
 	
 	@When("Modify the existing emrgency card") 
@@ -100,7 +117,43 @@ public class ecardStepDef extends DriverManager {
 	@When ("Click on Download Card button, then it should download the Card")
 	public void clickOnDownloadCardButton() throws Exception
 	{
-		new EmergencyCardPage(driver).clickOnDownloadCardButton();
+		new EmergencyCardPage(driver).clickOnDownloadCardButton("Download Card");
+	}
+	
+	@When ("Click on Action, click on Download menu for Download Sticker")
+	public void clickOnDownloadCardButtonAgain() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDownloadCard();
+		new EmergencyCardPage(driver).clickOnStickerTab();
+	}
+	@When ("Click on Download Sticker button, then it should download the Sticker")
+	public void clickOnDownloadStickerButton() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDownloadCardButton("Download Sticker");
+	}
+	
+	@When("User click on Register Your Emergency Card")
+	public void clickOnRegisterYourEmergencyCardLink() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnCreateOrRegisterCardLink();
+	}
+	
+	@Then("Register Your Emergency Card page should open")
+	public void validateRegisterYourEmergencyCardPage()
+	{
+		new EmergencyCardPage(driver).validateRegisterYourEmergencyCardPage();
+	}
+	
+	@When("User add details like card id {string}, country {string} for register card")
+	public void registerACard(String cardId,String country) throws Exception
+	{
+		new EmergencyCardPage(driver).registerACard(cardId, country);
+	}
+	
+	@Then("User should able to register a card")
+	public void validateRegisteredCard()
+	{
+		new EmergencyCardPage(driver).validateRegister();
 	}
 	
 	@When("Click on Action, click on Delete menu and click on Yes button")
@@ -109,7 +162,7 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).clickOnDeleteCard();
 	}
 	
-	@Then ("Emergency Card deleted should be deleted")
+	@Then ("Emergency Card should be deleted")
 	public void validateAlert()
 	{
 		new EmergencyCardPage(driver).validateDeleteAlert();

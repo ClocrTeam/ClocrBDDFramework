@@ -39,14 +39,34 @@ private WebDriver driver;
 	@FindBy(xpath = "//div[contains(text(), 'Folder created')]") 
 	private WebElement folderCreateAlert;
 	
+	@FindBy(xpath = "//span[text()='new_folder']//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
+	private WebElement editIconOfNewFolder;
+	
+	
+	@FindBy(xpath = "//div[1]//a[1]//span[contains(text(),'Delete')]")
+	private WebElement deleteMenuOfNewFolder;
+	
+	@FindBy(xpath = "//h5[contains(text(),'Warning')]")
+	private WebElement deletePopupOfNewFolderTitle;
+	
+	
+	@FindBy(xpath = "//button[contains(text(),'Delete')]")
+	private WebElement deletePopupOfNewFolderBtn;
+	
+	@FindBy(xpath = "//div[contains(text(),'Folder removed')]")
+	private WebElement deleteNewFolderAlert;
+	
 	
 	@FindBy(xpath = "//span[text()='My Kids']//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
 	private WebElement folderEditIcon;
 	
+	@FindBy(xpath = "//span[text()='rename_folder']//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
+	private WebElement renameFolderIcon;
+	
 	@FindBy(xpath = "//div[1]//a[1]//span[contains(text(),'Rename')]")
 	private WebElement editMenu;
 	
-	@FindBy(xpath = "//h5[contains(text(),'Rename My Kids')]")
+	@FindBy(xpath = "//h5[contains(text(),'Rename')]")
 	private WebElement renameFolderPopupTitle;
 	
 	@FindBy(xpath = "//input[@id='lastname-lname']")
@@ -83,7 +103,6 @@ private WebDriver driver;
 	@FindBy(xpath = "//span[normalize-space()='Notes']")
 	private WebElement notesIdDocument;
 	
-	
 	@FindBy(xpath = "//h5[contains(text(),'Notes')]")
 	private WebElement notesPopUpTitle;
 	
@@ -94,7 +113,7 @@ private WebDriver driver;
 	private WebElement shareIdDocuments;
 	
 	@FindBy(xpath = "//h5[contains(text(),'ID Documents')]")
-	private WebElement shareIdocumentsTitle;
+	private WebElement shareIdDocumentsTitle;
 	
 	@FindBy(xpath = "//label[contains(text(),'Select')]/preceding::p-dropdown/child::div[1]")
 	private WebElement shareIdDocumentsDropDown;
@@ -102,14 +121,33 @@ private WebDriver driver;
 	@FindBy(xpath = "//p-dropdownitem[1]//child::li[1]")
 	private WebElement shareIdDocumentsContact;
 	
-	@FindBy(xpath = "//label[contains(text(),'Download')]//preceding::p-checkbox//descendant::input[@id='Download']")
+	@FindBy(xpath = "//label[contains(text(),'Download')]//preceding::p-checkbox[1]//descendant::div[@role='checkbox']")
 	private WebElement shareDownloadBoxIdDocuments;
 	
-	@FindBy(xpath = "//label[contains(text(),'Upload')]//preceding::p-checkbox[1]/descendant::input[@id='Upload']")
+	@FindBy(xpath = "//label[contains(text(),'Upload')]//preceding::p-checkbox[1]//descendant::div[@role='checkbox']")
 	private WebElement shareUploadBoxIdDocuments;
 	
 	@FindBy(xpath = "//button[contains(text(),'Share')]")
 	private WebElement sharePopUpBtn;
+	
+	@FindBy(xpath = "//div[contains(text(),'Shared to')]")
+	private WebElement shareIdDocumentsAlert;
+	
+	@FindBy(xpath = "//h5[contains(text(),'ID Documents')]//following-sibling::button")
+	private WebElement sharePopUpCloseBtn;
+	
+	@FindBy(xpath = "//span[contains(text(),'Sai Clocr')]//ancestor::app-shared-contacts-columns//ancestor::div[1]//ancestor::td//following::td[2]//descendant::clocr-icon")
+	private WebElement deleteSharedIdDocumentsIcon;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Confirm')]")
+	private WebElement deleteShareContactPopUpTitle;
+	
+	@FindBy(xpath = "//button[contains(text(),'Yes')]")
+	private WebElement yesBtnDeleteContactIdDocuments;
+	
+	@FindBy(xpath = "//div[contains(text(),'Removed successfully')]")
+	private WebElement deleteShareContactAlertIdDocuments;
+	
 	
 	
 	public String getCreateFolderTitleText() {
@@ -140,243 +178,134 @@ private WebDriver driver;
 		return new DashboardPage(driver);
 	}
 	
-	public DigitalVaultPage clickCreateFolder() {
+	
+	public void checkElementIsDisplayed(String str, WebElement el) {
+		if(isDisplayed(el)) {
+			log().info("Validate" + str);
+		}
+		else
+			log().info("Not Validate" + str);
+	}
+	
+	
+	
+	public DigitalVaultPage createFolderNewFolder(String folder_name) {
 		click(createFolder);
-		return this;
-		
-	}
-	public DigitalVaultPage validateCreateFolderPopup() {
-		
-		if(isDisplayed(createFolderTitle)) {
-			log().info("Validate the title of create folder");
-		}
-		else
-			log().info("Not Validate the title of create folder");
-		
-	 return this;
-	}
-
-	public DigitalVaultPage chooseRootRadio() {
+		checkElementIsDisplayed("title of create folder",createFolderTitle);
 		click(rootRadio);
-		return this;
-		
-	}
-
-	public DigitalVaultPage enterNameOfFolder(String folder_name) {
-		sendKeys(folderNameText, folder_name + Integer.toString((int)(Math.random() * 100)));
-		return this;
-		
-	}
-
-	public DigitalVaultPage clickCreateFolderSubmit() {
+		sendKeys(folderNameText, folder_name);
 		click(createFolderSubmitbtn);
+		checkElementIsDisplayed("create folder alert",folderCreateAlert);
+		return this;
+		
+		
+	}
+	
+	public DigitalVaultPage deleteFolderNewFolder(String folder_name) {
+		clickByJavaScript(editIconOfNewFolder);
+		checkElementIsDisplayed("edit of new folder",editMenu);
+		click(deleteMenuOfNewFolder);
+		checkElementIsDisplayed("delete pop up of new folder", deletePopupOfNewFolderTitle);
+		click(deletePopupOfNewFolderBtn);
+//		checkElementIsDisplayed("delete folder alert of new folder", deleteNewFolderAlert);
 		return this;
 		
 	}
-
-
-	public DigitalVaultPage validateFolderCreatedAlert() {
-		
-		if(isDisplayed(folderCreateAlert)) {
-			log().info("Validate the title of create folder");
-		}
-		else
-			log().info("Not Validate the title of create folder");
-		
-	 return this;
-	}
-
-	public DigitalVaultPage clickOnEditFolderIcon() {
+	
+	public DigitalVaultPage renameMyKidsFolder(String folder_name) {
 		clickByJavaScript(folderEditIcon);
-		return this;
-		
-	}
-
-	public DigitalVaultPage validateEditMenu() {
-		if(isDisplayed(editMenu)) {
-			log().info("Validate the title of create folder");
-		}
-		else
-			log().info("Not Validate the title of create folder");
-		
-	 return this;
-		
-	}
-
-	public DigitalVaultPage clickOnRenameLink() {
+		checkElementIsDisplayed("edit of My Kids folder",editMenu);
 		click(editMenu);
-		return this;
-		
-	}
-
-	public  DigitalVaultPage validateRenamePopup() {
-		
-		if(isDisplayed(renameFolderPopupTitle)) {
-			log().info("Validate the title of rename folder");
-		}
-		else
-			log().info("Not Validate the title of rename folder");
-		
-	 return this;
-		
-	}
-
-	public DigitalVaultPage renameFolder(String rename_folder) {
-		sendKeys(renameFolderText, rename_folder + Integer.toString((int)(Math.random() * 100)));
+		checkElementIsDisplayed("title of rename My Kids", renameFolderPopupTitle);
+		sendKeys(renameFolderText, folder_name);
 		click(renameSaveBtn);
+//		checkElementIsDisplayed("rename alert of My Kids", folderRenameAlert);
 		return this;
 		
 	}
-
-	public DigitalVaultPage validateRenameAlert() {
-		
-		if(isDisplayed(folderRenameAlert)) {
-			log().info("Validate the alert rename folder");
-		}
-		else
-			log().info("Not Validate the alert rename folder");
-		
-	 return this;
-		
-	}
-
-	public DigitalVaultPage clickOnMyDocsIcon() {
-		 click(myDocsIcon);
-         return this;
+	
+	public DigitalVaultPage rollbackToMyKidsFolder(String folder_name) {
+		clickByJavaScript(renameFolderIcon);
+		checkElementIsDisplayed("edit of rename folder",editMenu);
+		click(editMenu);
+		checkElementIsDisplayed("title of rename folder", renameFolderPopupTitle);
+		sendKeys(renameFolderText, folder_name);
+		click(renameSaveBtn);
+//		checkElementIsDisplayed("rename alert of rename folder", folderRenameAlert);
+		return this;
 		
 	}
-
-	public DigitalVaultPage validateMyDocsExpand() {
-
-		if(isDisplayed(idDocumentsFolder)) {
-			log().info("Validate the edit of ID Documents");
-		}
-		else
-			log().info("Not Validate the edit of ID Documents");
-		
-          return this;
-		
-	}
-
-	public DigitalVaultPage clickOnEditIdDocuments() {
-		 click(idDocumentsEdit);
-         return this;
-		
-	}
-
-	public DigitalVaultPage validateIdDocumentsMenu() {
-		
-		if(isDisplayed(uploadToIdDocuments)) {
-			log().info("Validate the upload option of ID Documents");
-		}
-		else
-			log().info("Not Validate the upload option of ID Documents");
-         return this;
-		
-	}
-
-	public DigitalVaultPage clickOnUploadDocumentsOfIdDocuments() {
-		 click(uploadToIdDocuments);
-         return this;
-		
-	}
-
-	public DigitalVaultPage validateAddDocumentsPopUpIdDocuments() {
-		
-		if(isDisplayed(uploadPopUpTitle)) {
-			log().info("Validate the Add Document Popup of ID Documents");
-		}
-		else
-			log().info("Not Validate the Add Document Popup of ID Documents");
-         return this;
-		
-	}
-
-	public DigitalVaultPage uploadfile(String path) {
+	
+	public DigitalVaultPage uploadDocumentsToIdDocuments() {
+		click(myDocsIcon);
+		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
+		click(idDocumentsEdit);
+		checkElementIsDisplayed("Upload option of ID documents", uploadToIdDocuments);
+		click(uploadToIdDocuments);
+		checkElementIsDisplayed("Add Document popup ID documents", uploadPopUpTitle);
 		String showInput = "document.getElementsByTagName('input')[1].style.display = 'block'";
 		executeJavaScript(showInput);
-		sendKeys(browseBtnOfIdDocuments, path);
+		sendKeys(browseBtnOfIdDocuments, "C:/Users/Amalsan/Downloads/Adv.xlsx");
 		click(saveIdDocumentBtn);
 		return this;
+		
 	}
-
-	public DigitalVaultPage clickOnNotesIdDocuments() {
+	
+	public DigitalVaultPage addNotesToIdDocuments(String note) {
+		click(myDocsIcon);
+		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
+		click(idDocumentsEdit);
+		checkElementIsDisplayed("Notes option of Id Documents", notesIdDocument);
 		click(notesIdDocument);
-		return this;
-		
-	}
-
-	public DigitalVaultPage validateNotesPopUpIdDocuments() {
-
-		if(isDisplayed(notesPopUpTitle)) {
-			log().info("Validate the Notes Popup of ID Documents");
-		}
-		else
-			log().info("Not Validate the Notes Popup of ID Documents");
-		
-		return this;
-		
-	}
-
-	public DigitalVaultPage enterNotesIdDocuments(String notes) {
+		checkElementIsDisplayed("Notes popup ID documents", notesPopUpTitle);
 		clear(notesTextareaIdDocuments);
-		sendKeys(notesTextareaIdDocuments, notes);
+		sendKeys(notesTextareaIdDocuments, note);
 		click(saveIdDocumentBtn);
+//		checkElementIsDisplayed("Notes update alert of Id Documents", folderRenameAlert);
 		return this;
 		
 	}
-
-	public DigitalVaultPage notesUpdateAlertIdDocuments() {
-		if(isDisplayed(folderRenameAlert)) {
-			log().info("Validate the Notes update alert of ID Documents");
-		}
-		else
-			log().info("Not Validate the Notes update alert of ID Documents");
-		
-		return this;
-		
-	}
-
-	public DigitalVaultPage clickShareIdDocuments() {
+	
+	public DigitalVaultPage shareIdDocumentsFolder() throws InterruptedException {
+		Thread.sleep(20000);
+		click(idDocumentsEdit);
+		checkElementIsDisplayed("Notes option of Id Documents", shareIdDocuments);
 		click(shareIdDocuments);
-		return this;
-		
-	}
-
-	public DigitalVaultPage validateShareIdDocumentsTitle() {
-		
-		if(isDisplayed(shareIdocumentsTitle)) {
-			log().info("Validate Share popup ID Documents");
-		}
-		else
-			log().info("Not Validate the Share popup of ID Documents");
-		
-		return this;
-		
-		
-	}
-
-	public DigitalVaultPage chooseContactForIdDocuments() {
+		checkElementIsDisplayed("Share popup of ID Documents", shareIdDocumentsTitle);
 		click(shareIdDocumentsDropDown);
 		click(shareIdDocumentsContact);
-		return this;
-		
-		
-	}
-
-	public DigitalVaultPage checkUploadAndDownloadIdDocuments() {
 		click(shareDownloadBoxIdDocuments);
 		click(shareUploadBoxIdDocuments);
+		click(sharePopUpBtn);
+//		checkElementIsDisplayed("share contact alert", shareIdDocumentsAlert);
+		click(sharePopUpCloseBtn);
 		return this;
 		
+	}
+	
+	public DigitalVaultPage unShareIdDocumentsFolder() throws InterruptedException {
+		Thread.sleep(20000);
+		click(idDocumentsEdit);
+		checkElementIsDisplayed("Notes option of Id Documents", shareIdDocuments);
+		click(shareIdDocuments);
+		checkElementIsDisplayed("Share popup of ID Documents", shareIdDocumentsTitle);
+		click(deleteSharedIdDocumentsIcon);
+		checkElementIsDisplayed("Delete share contact popup", deleteShareContactPopUpTitle);
+		click(yesBtnDeleteContactIdDocuments);
+//		checkElementIsDisplayed("Delete share contact alert of ID Documents", deleteShareContactAlertIdDocuments);
+		return this;
 		
 	}
 
-	public DigitalVaultPage clickShareBtnIdDocuments() {
-		click(sharePopUpBtn);
-		return this;
-		
-	}
+
+
+
+
+
+
+
+
+
 	
 	
 }

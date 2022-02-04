@@ -30,8 +30,8 @@ public class BasePage {
 		this.driver = driver;
 	}
 	public void waitForVisibility(WebElement e) {
-		wait = new WebDriverWait(driver,Duration.ofSeconds(15));
-//		log().info("Waiting for"+ e);
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+		log().info("Waiting for"+ e);
 		wait.until(ExpectedConditions.visibilityOf(e));
 		log().info(e+ "is visible");
 	}

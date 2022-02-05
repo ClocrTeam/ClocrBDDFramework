@@ -1,5 +1,6 @@
 package pages;
 
+import java.io.File;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -99,6 +100,29 @@ private WebDriver driver;
 	
 	@FindBy(xpath = "//button[contains(text(),'Save')]")
 	private WebElement saveIdDocumentBtn;
+	
+	
+	@FindBy(xpath = "//span[text()='ID Documents']/ancestor::div[4]/descendant::clocr-icon[@icon='dv-folder']/child::img")
+	private WebElement idDocumentsFolderIcon;
+	
+	
+	@FindBy(xpath = "//img[@src='../../assets/new/icons/file.svg']")
+	private WebElement fileIconIdDocuments;
+	
+	@FindBy(xpath = "//span[contains(text(),'Adv.xlsx')]//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
+	private WebElement fileEditIdDocuments;
+	
+	@FindBy(xpath = "//span[contains(text(),'Delete Document')]")
+	private WebElement fileDeleteOptionIdDocuments;
+	
+	@FindBy(xpath = "//h5[contains(text(),'Warning')]")
+	private WebElement fileDeletePopUpWarningIdDocuments;
+	
+	@FindBy(xpath = "//button[contains(text(),'Delete')]")
+	private WebElement deleteFilePopUpIdDocumentsBtn;
+	
+	@FindBy(xpath = "//span[text()='My Docs']//ancestor::div[1]//preceding::span[1]")
+	private WebElement fileVaultLink;
 	
 	@FindBy(xpath = "//span[normalize-space()='Notes']")
 	private WebElement notesIdDocument;
@@ -236,7 +260,7 @@ private WebDriver driver;
 		
 	}
 	
-	public DigitalVaultPage uploadDocumentsToIdDocuments() {
+	public DigitalVaultPage uploadDocumentsToIdDocuments() throws InterruptedException {
 		click(myDocsIcon);
 		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
 		click(idDocumentsEdit);
@@ -245,11 +269,26 @@ private WebDriver driver;
 		checkElementIsDisplayed("Add Document popup ID documents", uploadPopUpTitle);
 		String showInput = "document.getElementsByTagName('input')[1].style.display = 'block'";
 		executeJavaScript(showInput);
-		sendKeys(browseBtnOfIdDocuments, "./src/test/resources/data/Clocr.pdf");
+		File file = new File("src/test/resources/data/Adv.xlsx");
+		sendKeys(browseBtnOfIdDocuments,file.getAbsolutePath());
 		click(saveIdDocumentBtn);
 		return this;
 		
 	}
+	
+	public DigitalVaultPage deleteUploadedDocumentsIdDocuments() throws InterruptedException {
+		Thread.sleep(3000);
+		click(idDocumentsFolderIcon);
+		checkElementIsDisplayed("file inside ID documents", fileIconIdDocuments);
+		click(fileEditIdDocuments);
+		checkElementIsDisplayed("delete edit option popup Id Documents", fileDeleteOptionIdDocuments);
+		click(fileDeleteOptionIdDocuments);
+		checkElementIsDisplayed("delete file warning Id Documents", fileDeletePopUpWarningIdDocuments);
+		click(deleteFilePopUpIdDocumentsBtn);
+		click(fileVaultLink);
+		return this;
+	}
+
 	
 	public DigitalVaultPage addNotesToIdDocuments(String note) {
 		click(myDocsIcon);
@@ -296,6 +335,7 @@ private WebDriver driver;
 		return this;
 		
 	}
+
 
 
 

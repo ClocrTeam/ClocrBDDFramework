@@ -109,11 +109,27 @@ private WebDriver driver;
 	@FindBy(xpath = "//img[@src='../../assets/new/icons/file.svg']")
 	private WebElement fileIconIdDocuments;
 	
+	@FindBy(xpath = "//span[contains(text(),'Adv.xlsx')]/ancestor::div[2]/descendant::span[contains(text(),'Emergency Access')]")
+	private WebElement emergencyAccessboxIdDocumentTitle;
+	
+	@FindBy(xpath = "//span[contains(text(),'Adv.xlsx')]/ancestor::div[2]/descendant::div[@role='checkbox']")
+	private WebElement emergencyAccessBoxIdDocument;
+	
+	
+	@FindBy(xpath = "//div[contains(text(),'Document successfully updated')]")
+	private WebElement emergencyAccessIdDocumentAlert;
+	
 	@FindBy(xpath = "//span[contains(text(),'Adv.xlsx')]//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
 	private WebElement fileEditIdDocuments;
 	
 	@FindBy(xpath = "//span[contains(text(),'Delete Document')]")
 	private WebElement fileDeleteOptionIdDocuments;
+	
+	@FindBy(xpath = "//span[contains(text(),'Notes')]")
+	private WebElement fileNotesOptionIdDocuments;
+	
+	@FindBy(xpath = "//span[contains(text(),'Download')]")
+	private WebElement fileDownloadOptionIdDocuments;
 	
 	@FindBy(xpath = "//h5[contains(text(),'Warning')]")
 	private WebElement fileDeletePopUpWarningIdDocuments;
@@ -205,10 +221,10 @@ private WebDriver driver;
 	
 	public void checkElementIsDisplayed(String str, WebElement el) {
 		if(isDisplayed(el)) {
-			log().info("Validate" + str);
+			log().info("Validate  " + str);
 		}
 		else
-			log().info("Not Validate" + str);
+			log().info("Not Validate  " + str);
 	}
 	
 	
@@ -276,10 +292,56 @@ private WebDriver driver;
 		
 	}
 	
-	public DigitalVaultPage deleteUploadedDocumentsIdDocuments() throws InterruptedException {
+	public DigitalVaultPage makeDocumentEmergencyAccessIdDocuments() throws InterruptedException {
 		Thread.sleep(3000);
 		click(idDocumentsFolderIcon);
-		checkElementIsDisplayed("file inside ID documents", fileIconIdDocuments);
+		checkElementIsDisplayed("file inside have emergency access ID documents", emergencyAccessboxIdDocumentTitle);
+		click(emergencyAccessBoxIdDocument);
+		checkElementIsDisplayed("Id Document file emergency access update alert", emergencyAccessIdDocumentAlert);
+		click(fileVaultLink);
+		return this;
+	}
+	
+	public DigitalVaultPage addNotesToIdDocumentsFile(String note) {
+		click(myDocsIcon);
+		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
+		click(idDocumentsFolderIcon);
+		checkElementIsDisplayed("file icon inside ID documents", fileIconIdDocuments);
+		click(fileEditIdDocuments);
+		checkElementIsDisplayed("notes option popup Id Documents", fileNotesOptionIdDocuments);
+		click(fileNotesOptionIdDocuments);
+		checkElementIsDisplayed("Notes popup ID documents", notesPopUpTitle);
+		clear(notesTextareaIdDocuments);
+		sendKeys(notesTextareaIdDocuments, note);
+		click(saveIdDocumentBtn);
+		click(fileVaultLink);
+//		checkElementIsDisplayed("Notes update alert of Id Documents", folderRenameAlert);
+		return this;
+		
+	}
+	
+
+	public DigitalVaultPage downloadFileInsideIdDocuments() {
+		click(myDocsIcon);
+		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
+		click(idDocumentsFolderIcon);
+		checkElementIsDisplayed("file icon inside ID documents", fileIconIdDocuments);
+		click(fileEditIdDocuments);
+		checkElementIsDisplayed("download option popup Id Documents", fileDownloadOptionIdDocuments);
+		click(fileDownloadOptionIdDocuments);
+		click(fileVaultLink);
+		return this;
+		
+	}
+
+
+
+	
+	public DigitalVaultPage deleteUploadedDocumentsIdDocuments() throws InterruptedException {
+		click(myDocsIcon);
+		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
+		click(idDocumentsFolderIcon);
+		checkElementIsDisplayed("file icon inside ID documents", fileIconIdDocuments);
 		click(fileEditIdDocuments);
 		checkElementIsDisplayed("delete edit option popup Id Documents", fileDeleteOptionIdDocuments);
 		click(fileDeleteOptionIdDocuments);
@@ -335,6 +397,8 @@ private WebDriver driver;
 		return this;
 		
 	}
+
+
 
 
 

@@ -43,6 +43,22 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).uploadDocumentsToIdDocuments();
 	}
 	
+	@When("Make Document Emergency Access of Id Documents")
+	public void makeDocumentEmergencyAccessIdDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).makeDocumentEmergencyAccessIdDocuments();
+	}
+	
+	@Then("Add Notes to ID documents file {string}")
+	public void addNotesIdDocumentsFile(String note) throws InterruptedException {
+		new DigitalVaultPage(driver).addNotesToIdDocumentsFile(note);
+	}
+	
+	@When("Download file inside ID documents")
+	public void downloadFileInsideIdDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).downloadFileInsideIdDocuments();
+	}
+	
+	
 	@Then("Delete uploaded document from ID documents folder")
 	public void deleteUploadedDocumentsIdDocuments() throws InterruptedException {
 		new DigitalVaultPage(driver).deleteUploadedDocumentsIdDocuments();

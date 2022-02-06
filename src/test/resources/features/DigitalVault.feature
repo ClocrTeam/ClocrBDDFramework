@@ -18,6 +18,9 @@ Scenario Outline: User should navigate to Digital Vault page
 		When Rename My Kids folder to "rename_folder"
 		Then Rollback to My Kids folder "My Kids"
 		When Upload documents to ID documents folder
+		When Make Document Emergency Access of Id Documents
+		Then Add Notes to ID documents file "note"
+		When Download file inside ID documents
 		Then Delete uploaded document from ID documents folder
 		Then Add Notes to ID documents folder "note"
 		When Share ID documents folder

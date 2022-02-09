@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.Log;
+
 public class DashboardPage extends BasePage {
 
 	public WebDriver driver;
@@ -109,7 +111,7 @@ public class DashboardPage extends BasePage {
 	public DashboardPage createEmergencyCard() throws Exception {
 		click(dashboard);
 		if(isDisplayed(eCard)) {
-			log().info("Emergency card is created already");
+			Log.info("Emergency card is created already");
 			click(eCard);
 		}
 		else if (isDisplayed(createNewECard)) {
@@ -118,10 +120,10 @@ public class DashboardPage extends BasePage {
 				new EmergencyCardPage(driver).pickContact();
 				new EmergencyCardPage(driver).createNewECard();
 				if(isDisplayed(ecardAlert)) {
-					log().info("New Emergency card is created successfully!");
+					Log.info("New Emergency card is created successfully!");
 				}
 		}else {
-			log().info("Unknow Error: Could be created");
+			Log.info("Unknow Error: Could be created");
 		}
 		return new DashboardPage(driver);
 	}

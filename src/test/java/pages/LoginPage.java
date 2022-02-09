@@ -1,9 +1,9 @@
 package pages;
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import utilities.Log;
 
 
 public class LoginPage extends BasePage{
@@ -47,7 +47,7 @@ public class LoginPage extends BasePage{
 	}
 	
 	public LoginPage enterPassword(String password) throws Exception {
-		Thread.sleep(3000);
+
 		sendKeys(passwordBtn, password);
 		return this;
 	}
@@ -55,7 +55,7 @@ public class LoginPage extends BasePage{
 	public LoginPage enterOTP() {
 		sendKeys(yopMail, "pankaj.clocr@yopmail.com");
 		click(submit);
-		log().info("Emergency card is created successfully");
+		Log.info("Emergency card is created successfully");
 		String otpNumber = new YopMailPage(driver).GetOTP();
 		switchToPreviousTab();
 		if(otpNumber!=null) {
@@ -66,7 +66,7 @@ public class LoginPage extends BasePage{
 	
 	public DashboardPage pressLoginBtn() {
 		click(loginBtn);
-		log().info("Emergency card is created successfully");
+		Log.info("Emergency card is created successfully");
 		return new DashboardPage(driver);
 	}
 

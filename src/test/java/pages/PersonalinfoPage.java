@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.Log;
+
 public class PersonalinfoPage extends BasePage {
 
 	public PersonalinfoPage(WebDriver driver) {
@@ -16,9 +18,9 @@ public class PersonalinfoPage extends BasePage {
 	
 	public PersonalinfoPage validatePageHeader() {
 		if(isDisplayed(pageHeader)) {
-			log().info("Page header {pageHeader} is validated");
+			Log.info("Page header {pageHeader} is validated");
 		}else {
-			log().info("Page header {pageHeader} is not displayed");
+			Log.info("Page header {pageHeader} is not displayed");
 		}
 		return this;
 	}

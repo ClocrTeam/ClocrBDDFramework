@@ -14,7 +14,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class DriverManager {
 	private static ConfigFileReader configReader;
 	public static WebDriver driver;
-
+	
 	@BeforeMethod
 	public static void  setUp() {
 		configReader = new ConfigFileReader();
@@ -35,13 +35,20 @@ public class DriverManager {
 			throw new IllegalStateException("Invalid browser name: " +configReader.getBrowserName());
 		}
 		driver.manage().window().maximize();
+		
 		driver.get(configReader.getApplicationUrl());
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 	}
 
 	@AfterMethod
 	public static void tearDown() {
 		driver.quit();
+	}
+	
+	public static void AdditionalUrl(String url) {
+		driver.get(url);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(13));
 	}
 }
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.Log;
+
 public class DigitalVaultPage extends BasePage {
 private WebDriver driver;
 	public DigitalVaultPage(WebDriver driver) {
@@ -125,10 +127,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateHeader() {
 		
 		if(isDisplayed(pageHeader)) {
-			log().info("Validate Digital Vault page header");
+			Log.info("Validate Digital Vault page header");
 		}
 		else {
-			log().info("Not Validate Digital Vault page header");
+			Log.info("Not Validate Digital Vault page header");
 			
 		}
 		
@@ -148,10 +150,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateCreateFolderPopup() {
 		
 		if(isDisplayed(createFolderTitle)) {
-			log().info("Validate the title of create folder");
+			Log.info("Validate the title of create folder");
 		}
 		else
-			log().info("Not Validate the title of create folder");
+			Log.info("Not Validate the title of create folder");
 		
 	 return this;
 	}
@@ -178,10 +180,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateFolderCreatedAlert() {
 		
 		if(isDisplayed(folderCreateAlert)) {
-			log().info("Validate the title of create folder");
+			Log.info("Validate the title of create folder");
 		}
 		else
-			log().info("Not Validate the title of create folder");
+			Log.info("Not Validate the title of create folder");
 		
 	 return this;
 	}
@@ -194,10 +196,10 @@ private WebDriver driver;
 
 	public DigitalVaultPage validateEditMenu() {
 		if(isDisplayed(editMenu)) {
-			log().info("Validate the title of create folder");
+			Log.info("Validate the title of create folder");
 		}
 		else
-			log().info("Not Validate the title of create folder");
+			Log.info("Not Validate the title of create folder");
 		
 	 return this;
 		
@@ -212,10 +214,10 @@ private WebDriver driver;
 	public  DigitalVaultPage validateRenamePopup() {
 		
 		if(isDisplayed(renameFolderPopupTitle)) {
-			log().info("Validate the title of rename folder");
+			Log.info("Validate the title of rename folder");
 		}
 		else
-			log().info("Not Validate the title of rename folder");
+			Log.info("Not Validate the title of rename folder");
 		
 	 return this;
 		
@@ -231,10 +233,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateRenameAlert() {
 		
 		if(isDisplayed(folderRenameAlert)) {
-			log().info("Validate the alert rename folder");
+			Log.info("Validate the alert rename folder");
 		}
 		else
-			log().info("Not Validate the alert rename folder");
+			Log.info("Not Validate the alert rename folder");
 		
 	 return this;
 		
@@ -249,10 +251,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateMyDocsExpand() {
 
 		if(isDisplayed(idDocumentsFolder)) {
-			log().info("Validate the edit of ID Documents");
+			Log.info("Validate the edit of ID Documents");
 		}
 		else
-			log().info("Not Validate the edit of ID Documents");
+			Log.info("Not Validate the edit of ID Documents");
 		
           return this;
 		
@@ -267,10 +269,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateIdDocumentsMenu() {
 		
 		if(isDisplayed(uploadToIdDocuments)) {
-			log().info("Validate the upload option of ID Documents");
+			Log.info("Validate the upload option of ID Documents");
 		}
 		else
-			log().info("Not Validate the upload option of ID Documents");
+			Log.info("Not Validate the upload option of ID Documents");
          return this;
 		
 	}
@@ -284,10 +286,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateAddDocumentsPopUpIdDocuments() {
 		
 		if(isDisplayed(uploadPopUpTitle)) {
-			log().info("Validate the Add Document Popup of ID Documents");
+			Log.info("Validate the Add Document Popup of ID Documents");
 		}
 		else
-			log().info("Not Validate the Add Document Popup of ID Documents");
+			Log.info("Not Validate the Add Document Popup of ID Documents");
          return this;
 		
 	}
@@ -309,10 +311,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateNotesPopUpIdDocuments() {
 
 		if(isDisplayed(notesPopUpTitle)) {
-			log().info("Validate the Notes Popup of ID Documents");
+			Log.info("Validate the Notes Popup of ID Documents");
 		}
 		else
-			log().info("Not Validate the Notes Popup of ID Documents");
+			Log.info("Not Validate the Notes Popup of ID Documents");
 		
 		return this;
 		
@@ -328,10 +330,10 @@ private WebDriver driver;
 
 	public DigitalVaultPage notesUpdateAlertIdDocuments() {
 		if(isDisplayed(folderRenameAlert)) {
-			log().info("Validate the Notes update alert of ID Documents");
+			Log.info("Validate the Notes update alert of ID Documents");
 		}
 		else
-			log().info("Not Validate the Notes update alert of ID Documents");
+			Log.info("Not Validate the Notes update alert of ID Documents");
 		
 		return this;
 		
@@ -346,10 +348,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateShareIdDocumentsTitle() {
 		
 		if(isDisplayed(shareIdocumentsTitle)) {
-			log().info("Validate Share popup ID Documents");
+			Log.info("Validate Share popup ID Documents");
 		}
 		else
-			log().info("Not Validate the Share popup of ID Documents");
+			Log.info("Not Validate the Share popup of ID Documents");
 		
 		return this;
 		

@@ -168,4 +168,29 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).validateDeleteAlert();
 	}	
 	
+	@When("Click on click here to recharge")
+	public void click_on_click_here_to_recharge()
+	{
+		new EmergencyCardPage(driver).clickOnClickHereCardLink();
+	}
+	
+	@Then("User redirects to Stripe page")
+	public void user_redirects_to_stripe_page()
+	{
+		new EmergencyCardPage(driver).validateStripePage();
+	}
+	
+	@When("Enter details and click on Pay button")
+	public void enter_details_and_click_on_pay_button() 
+	{
+		new EmergencyCardPage(driver).enterAllDetailsOnStripePage();
+	}
+	
+	@When("Enter promocode url")
+	public void enterPromocodeUrl()
+	{
+		AdditionalUrl("");
+		
+	}
+	
 }

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.Log;
+
 public class EmergencyCardPage extends BasePage 
 {
 
@@ -130,6 +132,27 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//div[contains(text(),'Registered')]")
 	WebElement registered;
 	
+	@FindBy(xpath = "//a[contains(text(),' click here ')]")
+	WebElement clickHere;
+	
+	@FindBy(xpath = "//div[contains(text(),'Pay with card')]")
+	WebElement payWithCardHeader;
+	
+	@FindBy(xpath = "//input[contains(@id,'cardNumber')]")
+	WebElement creditCardId;
+	
+	@FindBy(xpath = "//input[contains(@id,'cardExpiry')]")
+	WebElement cardExpiryDate;
+	
+	@FindBy(xpath = "//input[contains(@id,'cardCvc')]")
+	WebElement cardCVCNumber;
+	
+	@FindBy(xpath = "//input[contains(@id,'billingName')]")
+	WebElement billingName;
+	
+	@FindBy(xpath = "//div[contains(@class,'SubmitButton')]")
+	WebElement payButton;
+	
 	public String GetHeaderText() {
 		return getText(pageHeader);
 	}
@@ -166,12 +189,12 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(pageHeader))
 		{
-			log().info("Successfully redirects to 'Your Emergency Card' page");
+			Log.info("Successfully redirects to 'Your Emergency Card' page");
 			
 		}
 		else
 		{
-			log().error("Unknown Error");
+			Log.error("Unknown Error");
 		}
 		
 		return this;
@@ -180,7 +203,7 @@ public class EmergencyCardPage extends BasePage
 	public EmergencyCardPage clickOnCreateOrRegisterCardLink() throws Exception 
 	{
 		Thread.sleep(3000);
-		click(registerTxt);
+		clickByJavaScript(registerTxt);
 		return this;
 	}
 	
@@ -188,11 +211,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(createOrRegisterPageHeader))
 		{
-			log().info("Redirecting to 'Create or Register Your Emergency Card' page");
+			Log.info("Redirecting to 'Create or Register Your Emergency Card' page");
 		}
 		else
 		{
-			log().error("Wrong redirection");
+			Log.error("Wrong redirection");
 		}
 		return this;
 	}
@@ -211,11 +234,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(ecardAlert)) 	
 		{
-			log().info("New Emergency card is created successfully");
+			Log.info("New Emergency card is created successfully");
 		}
 		else
 		{
-		log().info("Unknow Error: Could be created");
+		Log.info("Unknow Error: Could be created");
 		}
 		return this;
 	}
@@ -239,11 +262,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(updateEmergencyCardPageHeader))
 		{
-			log().info("Redirects to 'Update Your Emergency Card' successfully");			
+			Log.info("Redirects to 'Update Your Emergency Card' successfully");			
 		}
 		else
 		{
-			log().error("Wrong page redirection");
+			Log.error("Wrong page redirection");
 		}
 		return this;
 	}
@@ -272,20 +295,20 @@ public class EmergencyCardPage extends BasePage
 	{
 //		if(isDisplayed(updateAlert)) 	
 //		{
-//			log().info("Emergency card is updated successfully");
+//			Log.info("Emergency card is updated successfully");
 //		}
 //		else
 //		{
-//		log().error("Unknow Error: Unable to update");
+//		Log.error("Unknow Error: Unable to update");
 //		}
 		
 		if(isDisplayed(validateContactAdd))
 		{
-			log().info("Contacts added successfully");
+			Log.info("Contacts added successfully");
 		}
 		else
 		{
-			log().error("Unable to add contact");
+			Log.error("Unable to add contact");
 		}
 		return this;
 	}
@@ -294,11 +317,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(updateAlert)) 	
 		{
-			log().info("Emergency card is updated successfully");
+			Log.info("Emergency card is updated successfully");
 		}
 		else
 		{
-		log().error("Unknow Error: Unable to update");
+		Log.error("Unknow Error: Unable to update");
 		}
 		return this;
 	}
@@ -308,11 +331,11 @@ public class EmergencyCardPage extends BasePage
 		
 		if(isDisplayed(emergencyCardServicePageHeader))
 		{
-			log().info("Emergency Card Service pop up is getting open successfully");
+			Log.info("Emergency Card Service pop up is getting open successfully");
 		}
 		else
 		{
-			log().error("Emergency Card Service pop up is not getting open");
+			Log.error("Emergency Card Service pop up is not getting open");
 		}
 		return this;
 	}
@@ -330,11 +353,11 @@ public class EmergencyCardPage extends BasePage
 		Thread.sleep(1000);
 		if(updateAlert.isDisplayed())
 		{
-			log().info("Emergency Card updated Successfully.");
+			Log.info("Emergency Card updated Successfully.");
 		}
 		else
 		{
-			log().error("Unable to update Emergency Card.");
+			Log.error("Unable to update Emergency Card.");
 		}
 		
 		return this;
@@ -357,8 +380,9 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	public EmergencyCardPage clickOnStickerTab()
+	public EmergencyCardPage clickOnStickerTab() throws Exception
 	{
+		Thread.sleep(2000);
 		click(stickerTab);
 		return this;
 	}
@@ -367,11 +391,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(emergencyCardServicePageHeader))
 		{
-			log().info("Download Pop up open successfully");
+			Log.info("Download Pop up open successfully");
 		}
 		else
 		{
-			log().error("Unable to open Download pop up");
+			Log.error("Unable to open Download pop up");
 		}
 		return this;
 	}
@@ -394,11 +418,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(registerPageHeader))
 		{
-			log().info("Redirecting to 'Register Your Emergency Card' page");
+			Log.info("Redirecting to 'Register Your Emergency Card' page");
 		}
 		else
 		{
-			log().error("Wrong redirection");
+			Log.error("Wrong redirection");
 		}
 		return this;
 	}
@@ -413,11 +437,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(successIcon))
 		{
-			log().info("You have requested to Emergency card service for "+registerCountry+"");
+			Log.info("You have requested to Emergency card service for "+registerCountry+"");
 		}
 		else
 		{
-			log().error("Unable to request a card.");
+			Log.error("Unable to request a card.");
 		}
 		return this;
 	}
@@ -458,11 +482,11 @@ public class EmergencyCardPage extends BasePage
 	{
 		if(isDisplayed(registered))
 		{
-			log().info("Your Emergency Card Registered successfully");
+			Log.info("Your Emergency Card Registered successfully");
 		}
 		else
 		{
-			log().error("Unable to register a card");
+			Log.error("Unable to register a card");
 		}
 		return this;
 	}
@@ -482,25 +506,65 @@ public class EmergencyCardPage extends BasePage
 	{
 //		if(isDisplayed(deleteAlert))
 //		{
-//			log().info("Card deleted successfully");
+//			Log.info("Card deleted successfully");
 //		}
 //		else
 //		{
-//			log().error("Card can not delete.");
+//			Log.error("Card can not delete.");
 //		}
 		
 		try
 		{
 			if(isDisplayed(registerTxt))
 				{
-					log().info("Emergency Card deleted successfully");
+					Log.info("Emergency Card deleted successfully");
 				}
 		}
 		catch(Exception e)
 		{
-			log().error("Emergency Card can not delete.");
+			Log.error("Emergency Card can not delete.");
 		}
 		return this;
 	} 
 	
+	
+	
+	public EmergencyCardPage clickOnClickHereCardLink()
+	{
+		clickByJavaScript(clickHere);
+		return this;
+	}
+	
+	public EmergencyCardPage validateStripePage()
+	{
+		if(isDisplayed(payWithCardHeader))
+		{
+			Log.info("Successfully redirects to Stripe Page");
+		}
+		else
+		{
+			Log.error("Unknown error");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage enterAllDetailsOnStripePage()
+	{
+		sendKeys(creditCardId, "4242424242424242");
+		
+		sendKeys(cardExpiryDate, "02/30");
+		
+		sendKeys(cardCVCNumber, "528");
+		
+		sendKeys(billingName, "BN");
+		
+		clickByJavaScript(payButton);
+		return this;
+	}
+	
+	public EmergencyCardPage enterPromocodeUrl()
+	{
+		driver.get("https://app.clocr.com/signup/ECDNMW");
+		return this;
+	}
 }

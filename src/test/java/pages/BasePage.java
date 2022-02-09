@@ -31,9 +31,9 @@ public class BasePage {
 	}
 	public void waitForVisibility(WebElement e) {
 		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-		log().info("Waiting for"+ e);
+		utilities.Log.info("Waiting for: "+ e);
 		wait.until(ExpectedConditions.visibilityOf(e));
-		log().info(e+ "is visible");
+		utilities.Log.info(e+": is visible");
 	}
 	public boolean isDisplayed(WebElement e) {
 		waitForVisibility(e);
@@ -46,7 +46,7 @@ public class BasePage {
 	public void click(WebElement e) {
 		waitForVisibility(e);
 		e.click();
-		log().info("clicked on" + e);
+		utilities.Log.info("clicked on: " + e);
 	}
 	public void executeJavaScript(String cmd) {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -56,11 +56,13 @@ public class BasePage {
 		waitForVisibility(e);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click();", e);
+		utilities.Log.info("clicked by javascript on: " + e);
 	}
 	public void doubleClick(WebElement e) {
 		Actions actions = new Actions(driver);
 		waitForVisibility(e);
-		actions.doubleClick().perform();	
+		actions.doubleClick().perform();
+		utilities.Log.info("double clicked on: " + e);
 	}
 	public void rightClick(WebElement e) {
 		Actions actions = new Actions(driver);
@@ -71,6 +73,7 @@ public class BasePage {
 		waitForVisibility(e);
 		e.clear();
 		e.sendKeys(txt);
+		utilities.Log.info(txt +"is entered");
 	}
 	public String getAttribute(WebElement e, String attribute) {
 		waitForVisibility(e);
@@ -133,34 +136,10 @@ public class BasePage {
 		actions.dragAndDrop(source, target).perform();		
 	}
 	
-	public Logger log() {
-		return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
-	}
-	
 	public String dateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		Date date = new Date();
 		return dateFormat.format(date);
-	}
-
-	public void log(String txt) {
-		String msg = Thread.currentThread().getId() +":"
-				+ Thread.currentThread().getStackTrace()[2].getClassName() + ":" + txt;		
-		System.out.println(msg);
-		String strFile = "logs" + File.separator + "_" + File.separator + dateTime();
-		File logFile = new File(strFile);
-		if (!logFile.exists()) {
-			logFile.mkdirs();
-		}
-		FileWriter fileWriter = null;
-		try {
-			fileWriter = new FileWriter(logFile + File.separator + "log.txt",true);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		PrintWriter printWriter = new PrintWriter(fileWriter);
-		printWriter.println(msg);
-		printWriter.close();
 	}
 	
 	public void submitKeys(WebElement e, Keys k)

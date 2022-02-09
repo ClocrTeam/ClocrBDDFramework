@@ -33,10 +33,13 @@ Scenario Outline: User should navigate to emergency card page
 		When Click on Download Sticker button, then it should download the Sticker
 		When User click on Register Your Emergency Card
 		Then Register Your Emergency Card page should open
-		When User add details like card id "843512190071", country "Slovenia" for register card
+		When User add details like card id "801492895996", country "Slovenia" for register card
 		Then User should able to register a card
 		When Click on Action, click on Delete menu and click on Yes button
 		Then Emergency Card should be deleted
+		When Click on click here to recharge
+		Then User redirects to Stripe page
+		When Enter details and click on Pay button
 		
 	
 	
@@ -44,3 +47,6 @@ Scenario Outline: User should navigate to emergency card page
 		Examples:
 			| email | password | country |
   		| natasha.clocr@yopmail.com | Welcome@123 | Spain |
+  		
+   
+  		

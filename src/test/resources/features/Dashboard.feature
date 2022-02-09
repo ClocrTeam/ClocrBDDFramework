@@ -37,3 +37,6 @@ Scenario Outline: User get a link Create your Emergency Card
 	Examples:
       | email | password |
       | pankaj.clocr@yopmail.com | Welcome@123 | 
+      
+      
+   

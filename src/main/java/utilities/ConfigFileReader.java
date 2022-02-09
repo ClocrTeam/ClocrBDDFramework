@@ -45,5 +45,10 @@ public class ConfigFileReader {
 		else throw new RuntimeException("Browser name is not specified in the Config.properties file for the Key:browserName");		
 	}
 	
+	public String getEcardPromocodeUrl() {
+		String ecardPromocodeUrl = properties.getProperty("ecardPromocodeUrl");
+		if(ecardPromocodeUrl != null) return ecardPromocodeUrl;
+		else throw new RuntimeException("EcardPromocode Url not specified in the Config.properties file for the Key:ecardPromocodeUrl");
+	}
 	
 }

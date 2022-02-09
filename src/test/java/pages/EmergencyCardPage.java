@@ -525,9 +525,7 @@ public class EmergencyCardPage extends BasePage
 			Log.error("Emergency Card can not delete.");
 		}
 		return this;
-	} 
-	
-	
+	}	
 	
 	public EmergencyCardPage clickOnClickHereCardLink()
 	{

@@ -29,7 +29,7 @@ public class Hooks {
 			try {
 				String testName = scenario.getName();
 				File source = ((TakesScreenshot) DriverManager.driver).getScreenshotAs(OutputType.FILE);
-				File dest = new File(System.getProperty("user.dir") + "/screenshots/"+testName+getcurrentdateandtime()+".png");
+				File dest = new File("screenshots"+testName+getcurrentdateandtime()+".png");
 				byte[] screenshot = ((TakesScreenshot) DriverManager.driver).getScreenshotAs(OutputType.BYTES);
 				FileHandler.copy(source, dest);
 				scenario.attach(screenshot, "image/png", testName+getcurrentdateandtime());

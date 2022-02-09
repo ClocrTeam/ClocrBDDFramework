@@ -41,9 +41,6 @@ Scenario Outline: User should navigate to emergency card page
 		Then User redirects to Stripe page
 		When Enter details and click on Pay button
 		
-	
-	
-
 		Examples:
 			| email | password | country |
   		| natasha.clocr@yopmail.com | Welcome@123 | Spain |

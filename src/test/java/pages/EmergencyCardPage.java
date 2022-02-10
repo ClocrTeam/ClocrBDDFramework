@@ -32,7 +32,7 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//span[contains(text(),'ACTIVE')]")
 	private WebElement activeStatus;
 	
-	@FindBy(xpath = "//a[contains(text(),'Register Your')]")
+	@FindBy(xpath = "//a[contains(text(),'Create or Register Your')]")
 	private WebElement registerTxt;
 	
 	@FindBy(xpath ="//span[contains(text(),'Create or Register Your Emergency Card')]")
@@ -44,7 +44,7 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath ="//span[contains(text(),'Register Your Emergency Card')]")
 	private WebElement registerPageHeader;
 	
-	@FindBy(xpath = "//span[contains(text(),' Jignesh Clocr ')]//preceding::div[@role='checkbox']")
+	@FindBy(xpath = "//span[contains(text(),' Jignesh Clocr ')]//preceding::div[1][@role='checkbox']")
 	private WebElement contactCheckbox;
 	
 	@FindBy(xpath = "//button[contains(text(), 'Add') and @type]")
@@ -153,6 +153,9 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//div[contains(@class,'SubmitButton')]")
 	WebElement payButton;
 	
+	@FindBy(xpath = "//span[contains(text(),'This card already registered')]")
+	WebElement cardAlreadyRegisterAlert;
+	
 	public String GetHeaderText() {
 		return getText(pageHeader);
 	}
@@ -202,8 +205,20 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage clickOnCreateOrRegisterCardLink() throws Exception 
 	{
-		Thread.sleep(3000);
 		clickByJavaScript(registerTxt);
+		return this;
+	}
+	
+	public EmergencyCardPage validateIfCardAdded() throws Exception
+	{
+		try
+		{
+			if(isDisplayed(registerYourCardLink))
+			{
+				clickOnDeleteCard();
+			}
+		}catch(Exception e){}
+		
 		return this;
 	}
 	
@@ -374,7 +389,7 @@ public class EmergencyCardPage extends BasePage
 	{
 		clickOnActions();
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		clickByJavaScript(downloadMenu);
 		
 		return this;
@@ -383,7 +398,7 @@ public class EmergencyCardPage extends BasePage
 	public EmergencyCardPage clickOnStickerTab() throws Exception
 	{
 		Thread.sleep(2000);
-		click(stickerTab);
+		clickByJavaScript(stickerTab);
 		return this;
 	}
 	
@@ -467,14 +482,27 @@ public class EmergencyCardPage extends BasePage
 		ecardServiceOption();
 		
 		validateRequestEmergencyCardService(registerCountry);
-		enterCardId(cardId);
 		
 		clickPickContact();
 		
 		addContactForRegister();
 		
-		clickOnRegisterCardButton();
+		enterCardId(cardId);
 		
+		try
+		{
+			if(isDisplayed(cardAlreadyRegisterAlert))
+			{
+				Log.info("This card is already Registered.");
+				
+				click(backUpdateEcardPage);
+			}
+		}
+		catch(Exception e) 
+		{
+			clickOnRegisterCardButton();
+		}
+			
 		return this;
 	}
 	
@@ -495,9 +523,9 @@ public class EmergencyCardPage extends BasePage
 	{
 		clickOnActions();
 		
-		click(deleteMenu);
+		clickByJavaScript(deleteMenu);
 		
-		click(yesButtonElement);
+		clickByJavaScript(yesButtonElement);
 		
 		return this;
 	}

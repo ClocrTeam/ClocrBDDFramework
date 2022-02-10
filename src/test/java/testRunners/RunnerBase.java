@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
         , "html:target/Reports/cucumber"
         , "summary"
         , "me.jvt.cucumber.report.PrettyReports:target/Cucumber-Reports"}
-        ,features = "src/test/resources/features/Ecard.feature"
+        ,features = "src/test/resources/features/"
         ,glue = "src/test/java/steps"
         ,monochrome = true)
 

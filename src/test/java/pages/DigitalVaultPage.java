@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.Log;
+
 public class DigitalVaultPage extends BasePage {
 private WebDriver driver;
 	public DigitalVaultPage(WebDriver driver) {
@@ -203,10 +205,10 @@ private WebDriver driver;
 	public DigitalVaultPage validateHeader() {
 		
 		if(isDisplayed(pageHeader)) {
-			log().info("Validate Digital Vault page header");
+			Log.info("Validate Digital Vault page header");
 		}
 		else {
-			log().info("Not Validate Digital Vault page header");
+			Log.info("Not Validate Digital Vault page header");
 			
 		}
 		
@@ -221,10 +223,10 @@ private WebDriver driver;
 	
 	public void checkElementIsDisplayed(String str, WebElement el) {
 		if(isDisplayed(el)) {
-			log().info("Validate  " + str);
+			Log.info("Validate  " + str);
 		}
 		else
-			log().info("Not Validate  " + str);
+			Log.info("Not Validate  " + str);
 	}
 	
 	

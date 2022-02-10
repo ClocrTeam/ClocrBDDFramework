@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
         plugin = {"pretty"
         , "html:target/Reports/cucumber"
         , "summary"
-        , "me.jvt.cucumber.report.PrettyReports:target/Cucumber-Reports"}
+        , "me.jvt.cucumber.report.PrettyReports:target/cucumber-reports"}
         ,features = "src/test/resources/features/"
         ,glue = "src/test/java/steps"
         ,monochrome = true)

@@ -8,8 +8,7 @@ import io.cucumber.testng.CucumberOptions;
         , "summary"
         , "me.jvt.cucumber.report.PrettyReports:target/cucumber-reports"}
         ,features = "src/test/resources/features/"
-        ,glue = "src/test/java/steps"
-        ,monochrome = true)
+        ,glue = "steps")
 
 public class RunnerBase extends CutomizeTestNGCucmberRunner  {
 }

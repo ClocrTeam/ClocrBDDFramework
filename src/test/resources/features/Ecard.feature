@@ -5,7 +5,7 @@
 Feature: Emergency card
 
 Background: User should be on Dashboard page
-	When Enter user name as "natasha.clocr@yopmail.com"
+	When Enter user name as "check.automation@yopmail.com"
 	And click on Proceed button
 	And enter correct "Welcome@123"
 	And Click on Login button
@@ -33,7 +33,7 @@ Scenario Outline: User should navigate to emergency card page
 		When Click on Download Sticker button, then it should download the Sticker
 		When User click on Register Your Emergency Card
 		Then Register Your Emergency Card page should open
-		When User add details like card id "801492895996", country "Slovenia" for register card
+		When User add details like card id "846929920305", country "Slovenia" for register card
 		Then User should able to register a card
 		When Click on Action, click on Delete menu and click on Yes button
 		Then Emergency Card should be deleted

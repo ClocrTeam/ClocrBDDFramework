@@ -20,6 +20,7 @@ public class ecardStepDef extends DriverManager {
 	@When("Click on Create your Emergency Card")
 	public void createEmergnecy() throws Exception
 	{
+		new EmergencyCardPage(driver).validateIfCardAdded();
 		new EmergencyCardPage(driver).clickOnCreateOrRegisterCardLink();
 		
 	}
@@ -135,7 +136,7 @@ public class ecardStepDef extends DriverManager {
 	@When("User click on Register Your Emergency Card")
 	public void clickOnRegisterYourEmergencyCardLink() throws Exception
 	{
-		new EmergencyCardPage(driver).clickOnCreateOrRegisterCardLink();
+		new EmergencyCardPage(driver).clickOnRegisterYourCardLink();
 	}
 	
 	@Then("Register Your Emergency Card page should open")

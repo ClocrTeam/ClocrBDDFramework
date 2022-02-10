@@ -7,34 +7,98 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class DigitalEstatePage extends BasePage {
-	
 private WebDriver driver;
 	public DigitalEstatePage(WebDriver driver) {
 		super(driver);
 	}
-	@FindBy(xpath = "//span[@class='main-app-title']")
+	@FindBy(xpath = "//span[@class='ng-star-inserted']")
 	private WebElement pageHeader;
-	
-	@FindBy(xpath = "//div[@class='subheading ng-star-inserted']")
-	private WebElement DigitalEstatecaption;
-	
-	@FindBy(xpath = "//span[normalize-space()='Dashboard']")
-	private WebElement dashboard;
-	
-	@FindBy(xpath = "//div[@class='text-center pt-3 pb-3 logo-section']")
-	private WebElement NewAccount;
 	
 	@FindBy(tagName = "title")
 	private WebElement pageTitle;
 	
-	@FindBy(xpath = "//h5[@class='modal-title']")
-	private WebElement NewAccountTitle;
+	@FindBy(xpath = "//span[normalize-space()='Dashboard']")
+	private WebElement dashboard;
 	
-	public String getHeaderText() {
+    @FindBy(xpath = "//span[normalize-space()='Digital Estate']")
+    private WebElement DigitalEstate;
+	
+	@FindBy(xpath = "//a[@class='mt-1 text-danger left-bar c-pointer newAcc']")
+	private WebElement newAccount;
+	
+	@FindBy(xpath = "//h5[@class='ng-star-inserted']")
+	private WebElement createAccountTitle;
+	
+	@FindBy(xpath = "//input[@formcontrolname='asset_title']")
+	private WebElement accountNameText;
+	
+	@FindBy(xpath = "//input[@formcontrolname='asset_account_num']")
+	private WebElement accountUserIdText;
+	
+	@FindBy(xpath = "//input[@type='password']")
+	private WebElement passwordText;
+	
+	@FindBy(xpath = "//input[@formcontrolname='asset_url']")
+	private WebElement urlText;
+	
+	@FindBy(xpath = "//textarea[@type='text']")
+	private WebElement notesText;
+	
+	@FindBy(xpath = "//button[normalize-space()='Create']")
+	private WebElement createbtn;
+	
+//	@FindBy(xpath = "//div[contains(text(), 'Account created successfully']")
+//	private WebElement accountCreatedAlert;
+//	
+//	@FindBy(xpath = "//button[@class='btn bg-transparent border-0']")
+//	private WebElement menubtn;
+//	
+//	@FindBy(xpath = "//span[normalize-space()='Edit']")
+//	private WebElement edit;
+//	
+//	@FindBy(xpath = "//h5[@class='ng-star-inserted']")
+//	private WebElement editAccountTitle;
+//	
+//	@FindBy(xpath = "//button[normalize-space()='Update']")
+//	private WebElement updatebtn;
+	
+	@FindBy(xpath = "//a[@class='mt-1 text-danger left-bar c-pointer espCheckList']")
+	private WebElement accountsWizard;
+	
+	@FindBy(xpath = "//h5[@class='ml-2 pt-2']")
+	private WebElement checkListTitle;
+	
+	@FindBy(xpath = "//p[normalize-space()='Travel']")
+    private WebElement Travel;
+	
+//	@FindBy(xpath = "//span[@class='p-checkbox-icon pi pi-check']")
+//	private WebElement checkbox;
+	
+	@FindBy(xpath = "//button[text()='Save']")
+    private WebElement savebtn;
+	
+	public String getCreateAccountTitleText() {
+		return getText(createAccountTitle);
+	}
+	
+	public String GetHeaderText() {
 		return getText(pageHeader);
 	}
-	public String getPageTitle() {
+	public String GetPageTitle() {
 		return getText(pageTitle);
+	}
+	public DigitalEstatePage validateHeader() {
+		
+		if(isDisplayed(pageHeader)) {
+			log().info("Validate Digital Estate page header");
+		}
+		else {
+			log().info("Not Validate Digital Estate page header");
+			
+		}
+		
+		return this;
+		
 	}
 	
 	public DashboardPage clickDashboard() {
@@ -42,30 +106,126 @@ private WebDriver driver;
 		return new DashboardPage(driver);
 	}
 	
-	public DigitalEstatePage clickNewAccount() {
-		click(NewAccount);
-		return this;		
+	public DigitalEstatePage clickDigitalEstate() {
+		click(DigitalEstate);
+		return new DigitalEstatePage(driver);
 	}
-  public DigitalEstatePage validateCreateAccountpage() {
+	
+	
+	public DigitalEstatePage clickNewAccount() {
+		click(newAccount);
+		return this;
 		
-		if(isDisplayed(NewAccountTitle)) {
-			log().info("Validate the title of New Account");
+	}
+	public DigitalEstatePage validateCreateAccountPage() {
+		
+		if(isDisplayed(createAccountTitle)) {
+			log().info("Validate the title of new account");
 		}
 		else
-			log().info("Not Validate the title of New Account");
+			log().info("Not Validate the title of new account");
 		
 	 return this;
 	}
-public DigitalEstatePage validateHeader() {
+//   public DigitalEstatePage validateAccountCreatedAlert() {
+//		
+//		if(isDisplayed(accountCreatedAlert)) {
+//			log().info("Validate the title of create account");
+//		}
+//		else
+//			log().info("Not Validate the title of create account");
+//		
+//	 return this;
+//	}
+//   public DigitalEstatePage validateEditAccount() {
+//		
+//		if(isDisplayed(editAccountTitle)) {
+//			log().info("Validate the title of edit account");
+//		}
+//		else
+//			log().info("Not Validate the title of edit account");
+//		
+//	 return this;
+//	}
 	
-	if(isDisplayed(DigitalEstatecaption)) {
-		log().info("Validate the title of DigitalEstatecaption");
-	}
-	else
-		log().info("Not Validate the title of DigitalEstatecaption");
-	
- return this;
-	
-}
+    
 
+	public DigitalEstatePage enterAccountName(String account_name) {
+		sendKeys(accountNameText, account_name + Integer.toString((int)(Math.random() * 100)));
+		return this;
+		
+	}
+	public DigitalEstatePage enterAccountUserId(String account_user_id) {
+		sendKeys(accountUserIdText, account_user_id + Integer.toString((int)(Math.random() * 100)));
+		return this;
+		
+	}
+	public DigitalEstatePage enterPassword(String password) {
+		sendKeys(passwordText, password + Integer.toString((int)(Math.random() * 100)));
+		return this;
+		
+	}
+	
+	public DigitalEstatePage enterUrl(String url) {
+		sendKeys(urlText, url + Integer.toString((int)(Math.random() * 100)));
+		return this;
+		
+	}
+	public DigitalEstatePage enterNotes(String notes) {
+		sendKeys(notesText, notes + Integer.toString((int)(Math.random() * 100)));
+		return this;
+		
+	}
+
+	public DigitalEstatePage clickCreate() {
+		click(createbtn);
+		return new DigitalEstatePage(driver);
+	}
+	
+//	public DigitalEstatePage clickMenubtn() {
+//		click(menubtn);
+//		return new DigitalEstatePage(driver);
+//	}
+//	
+//	public DigitalEstatePage clickEdit() {
+//		click(edit);
+//		return new DigitalEstatePage(driver);
+//	}
+//	
+//	public DigitalEstatePage clickUpdate() {
+//		click(updatebtn);
+//		return new DigitalEstatePage(driver);
+//	}
+
+	public DigitalEstatePage clickAccountsWizard() {
+		click(accountsWizard);
+		return this;
+		
+	}
+
+     public DigitalEstatePage validateCheckListPage() {
+		
+		if(isDisplayed(checkListTitle)) {
+			log().info("Validate the title of check list");
+		}
+		else
+			log().info("Not Validate the title of check list");
+		
+	 return this;
+	}
+     public DigitalEstatePage clickTravel() {
+ 		click(Travel);
+ 		return new DigitalEstatePage(driver);
+ 	}
+//     public DigitalEstatePage chooseCheckbox() {
+// 		click(checkbox);
+// 		return this;
+// 		
+// 	}
+     
+     public DigitalEstatePage clickSavebtn() {
+ 		click(savebtn);
+ 		return new DigitalEstatePage(driver);
+ 	}
+	
 }

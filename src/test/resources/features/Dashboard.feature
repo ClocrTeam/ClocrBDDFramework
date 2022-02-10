@@ -19,7 +19,7 @@ Feature: Dashboard page scenarios
 	
 #Examples:
  #     |url| email | password |
-  #    |dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 | 
+  #    |dev.clocr.com | ghj@yopmail.com | Rekha@1234 | 
 	
 Scenario Outline: User get a link Create your Emergency Card
 	Given Browser should be open and user should be 'dev.clocr.com' site
@@ -38,4 +38,4 @@ Scenario Outline: User get a link Create your Emergency Card
 
 	Examples:
       |url| email | password |
-      |dev.clocr.com | pankaj.clocr@yopmail.com | Welcome@123 | 
+      |dev.clocr.com | ghj@yopmail.com | Rekha@1234 | 

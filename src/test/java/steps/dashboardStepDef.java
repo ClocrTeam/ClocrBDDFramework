@@ -1,12 +1,10 @@
 package steps;
 
-import org.testng.Assert;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.DashboardPage;
-import pages.DigitalEstatePage;
 import pages.LoginPage;
 import pages.PersonalinfoPage;
 import pages.SubsManagementPage;
@@ -47,7 +45,7 @@ public class dashboardStepDef extends DriverManager{
     @Then("User should be redirected to 'Your Digital Estate' page")
     public void navigateDigitalEstatePage() {
     	new SubsManagementPage(driver).ClickDigitalEstate();
-    	Assert.assertEquals( new DigitalEstatePage(driver).getHeaderText(),"Last Update:");
+    	
     }
 
     @Then("User should redirected to 'Digital Vault' page")
@@ -55,6 +53,8 @@ public class dashboardStepDef extends DriverManager{
     	new SubsManagementPage(driver).ClickDigitalVault();
     	//Assert.assertEquals("Digital Vault clocr", new DigitalVaultPage(driver).GetPageTitle());
     }
+    
+    
     
     @Then("User should redirected to 'Time Capsule' page")
     public void navigateTimeCapsulePage() {

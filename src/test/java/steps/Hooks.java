@@ -35,7 +35,7 @@ public class Hooks {
 				e.printStackTrace();
 			}
 			DriverManager.driver.quit();
-		}else {
+		} else {
 			DriverManager.driver.quit();
 		}
 	}

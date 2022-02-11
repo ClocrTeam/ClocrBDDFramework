@@ -308,14 +308,19 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage validateContactsAdd()
 	{
-//		if(isDisplayed(updateAlert)) 	
-//		{
-//			Log.info("Emergency card is updated successfully");
-//		}
-//		else
-//		{
-//		Log.error("Unknow Error: Unable to update");
-//		}
+		try
+		{
+			Thread.sleep(1000);
+			if(updateAlert.isDisplayed())
+			{
+				Log.info("Emergency card is updated successfully");
+			}			
+		}
+		catch(Exception e)
+		{
+			Log.error("Unknow Error: Unable to update");
+		}
+		
 		
 		if(isDisplayed(validateContactAdd))
 		{
@@ -341,17 +346,37 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	public EmergencyCardPage emergencyCardServicePageHeader()
+	public EmergencyCardPage emergencyCardServicePageHeader() throws Exception
 	{
+		Thread.sleep(1000);
+		try
+		{
+			if(updateAlert.isDisplayed())
+			{
+				Log.info("Emergency card updated successfully");
+			}
+		}
+		catch(Exception e)
+		{
+			Log.error("Unable to update Emergency card.");
+		}
+			
+//		try
+//		{
+//			if(isDisplayed(emergencyCardServicePageHeader))
+//			{
+//				Log.info("Emergency Card Service pop up is getting open successfully");
+//			}
+//			else
+//			{
+//				Log.error("Emergency Card Service pop up is not getting open");
+//			}
+//		}
+//		catch(Exception e)
+//		{
+//			Log.error("Unknown Error");
+//		}
 		
-		if(isDisplayed(emergencyCardServicePageHeader))
-		{
-			Log.info("Emergency Card Service pop up is getting open successfully");
-		}
-		else
-		{
-			Log.error("Emergency Card Service pop up is not getting open");
-		}
 		return this;
 	}
 	
@@ -479,9 +504,9 @@ public class EmergencyCardPage extends BasePage
 	{
 		selectCountry(registerCountry);
 		
-		ecardServiceOption();
+//		ecardServiceOption();
 		
-		validateRequestEmergencyCardService(registerCountry);
+//		validateRequestEmergencyCardService(registerCountry);
 		
 		clickPickContact();
 		

@@ -55,5 +55,4 @@ public class LoginPage extends BasePage{
 		Log.info("Emergency card is created successfully");
 		return new DashboardPage(driver);
 	}
-
 }

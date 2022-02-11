@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.io.FileHandler;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -45,10 +43,10 @@ public class Hooks {
 	private static String getcurrentdateandtime() {
 		String str = null;
 		try {
-			DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH-mm-ss");
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
 			Date date = new Date();
 			str = dateFormat.format(date);
-			str = str.replace(" ", "").replaceAll("/", "").replaceAll(":", "");
+			str = str.replaceAll("/", "").replaceAll(":", "");
 		} catch (Exception e) {
 		}
 		return str;

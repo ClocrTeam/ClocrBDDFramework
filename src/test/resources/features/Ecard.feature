@@ -21,7 +21,7 @@ Scenario Outline: User should navigate to emergency card page
 		Then It should redirects to Update Your Emergency Card page
 		When Select another "Spain"
 		Then Emergency Card Service pop up should open
-		When Select Clocr Emergency Card option and Click on Inform Clocr button
+#		When Select Clocr Emergency Card option and Click on Inform Clocr button
 		When Click on Pick your Contacts button, select contact and then click on Add button
 		Then Contacts should add
 		When Click on Back button

@@ -62,16 +62,16 @@ public class ecardStepDef extends DriverManager {
 	}
 	
 	@Then("Emergency Card Service pop up should open")
-	public void emergencyCardServiceValidation()
+	public void emergencyCardServiceValidation() throws Exception
 	{
 		new EmergencyCardPage(driver).emergencyCardServicePageHeader();
 	}
 	
-	@When("Select Clocr Emergency Card option and Click on Inform Clocr button")
-	public void ecardServiceOption()
-	{
-		new EmergencyCardPage(driver).ecardServiceOption();
-	}
+//	@When("Select Clocr Emergency Card option and Click on Inform Clocr button")
+//	public void ecardServiceOption()
+//	{
+//		new EmergencyCardPage(driver).ecardServiceOption();
+//	}
 	
 //	@Then("Emergency Card has been updated successfully message should show")
 //	public void ecardServiceUpdate() throws Exception

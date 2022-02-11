@@ -10,5 +10,5 @@ import io.cucumber.testng.CucumberOptions;
         ,features = "src/test/resources/features/"
         ,glue = "steps")
 
-public class RunnerBase extends CutomizeTestNGCucmberRunner  {
+public class RunnerBase extends CutomizeTestNGCucmberRunner {
 }

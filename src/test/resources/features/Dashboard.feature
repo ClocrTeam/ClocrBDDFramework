@@ -7,7 +7,7 @@ Feature: Dashboard page scenarios
 Background: User should be on Dashboard page
 	When Enter user name as "pankaj.clocr@yopmail.com"
 	And click on Proceed button
-	And enter correct "Welcome@1235345"
+	And enter correct "Welcome@123"
 	And Click on Login button 
 	
 Scenario Outline: User get a link Create your Emergency Card

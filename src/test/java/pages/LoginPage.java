@@ -2,7 +2,6 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import utilities.Log;
 
 
@@ -47,20 +46,7 @@ public class LoginPage extends BasePage{
 	}
 	
 	public LoginPage enterPassword(String password) throws Exception {
-
 		sendKeys(passwordBtn, password);
-		return this;
-	}
-
-	public LoginPage enterOTP() {
-		sendKeys(yopMail, "pankaj.clocr@yopmail.com");
-		click(submit);
-		Log.info("Emergency card is created successfully");
-		String otpNumber = new YopMailPage(driver).GetOTP();
-		switchToPreviousTab();
-		if(otpNumber!=null) {
-			sendKeys(otpForm, otpNumber);
-		}
 		return this;
 	}
 	

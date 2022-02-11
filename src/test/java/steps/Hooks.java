@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
@@ -23,14 +25,13 @@ public class Hooks {
 
 	@After
 	public static void captureScreenshot(Scenario scenario) throws IOException {
-
 		if(scenario.isFailed()){
 			try {
 				String testName = scenario.getName();
 				File source = ((TakesScreenshot) DriverManager.driver).getScreenshotAs(OutputType.FILE);
-				File dest = new File("screenshots/"+testName+getcurrentdateandtime()+".png");
+				File dest = new File("screenshots"+File.separator+testName+File.separator+getcurrentdateandtime()+".png");
 				byte[] screenshot = ((TakesScreenshot) DriverManager.driver).getScreenshotAs(OutputType.BYTES);
-				FileHandler.copy(source, dest);
+				FileUtils.copyFile(source, dest);
 				scenario.attach(screenshot, "image/png", testName+getcurrentdateandtime());
 			}catch (WebDriverException e) {
 				e.printStackTrace();

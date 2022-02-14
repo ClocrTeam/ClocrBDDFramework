@@ -55,18 +55,18 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).validateUpdateEmeregencyPageHeader();
 	}
 	
-	@When("Select another {string}")
-	public void selectCountry(String country) throws Exception
-	{
-		new EmergencyCardPage(driver).selectCountry(country);
-	}
-	
-	@Then("Emergency Card Service pop up should open")
-	public void emergencyCardServiceValidation() throws Exception
-	{
-		new EmergencyCardPage(driver).emergencyCardServicePageHeader();
-	}
-	
+//	@When("Select another {string}")
+//	public void selectCountry(String country) throws Exception
+//	{
+//		new EmergencyCardPage(driver).selectCountry(country);
+//	}
+//	
+//	@Then("Emergency Card Service pop up should open")
+//	public void emergencyCardServiceValidation() throws Exception
+//	{
+//		new EmergencyCardPage(driver).emergencyCardServicePageHeader();
+//	}
+//	
 //	@When("Select Clocr Emergency Card option and Click on Inform Clocr button")
 //	public void ecardServiceOption()
 //	{
@@ -157,17 +157,29 @@ public class ecardStepDef extends DriverManager {
 		new EmergencyCardPage(driver).validateRegister();
 	}
 	
-	@When("Click on Action, click on Delete menu and click on Yes button")
-	public void clickOnDeleteButton() throws Exception
+	@When("Click on Order New Card link")
+	public void click_on_order_new_card_link()
 	{
-		new EmergencyCardPage(driver).clickOnDeleteCard();
+		new EmergencyCardPage(driver).clickOnOrderNewCardLlink();
 	}
 	
-	@Then ("Emergency Card should be deleted")
-	public void validateAlert()
+	@Then("It should redirects to Order Emergency Cards page")
+	public void validate_order_emergency_card_page()
 	{
-		new EmergencyCardPage(driver).validateDeleteAlert();
-	}	
+		new EmergencyCardPage(driver).validateOrderEmergencyCardPageHeader();
+	}
+	
+	@When("Select Not Interested option and click on Close button")
+	public void select_Not_Interested_Option()
+	{
+		new EmergencyCardPage(driver).selectNotInterestedOption();
+	}
+	
+	@Then("User should redirects to Your Emergency Card page after click on Close button")
+	public void validate_Emergnecy_Card_Page()
+	{
+		new EmergencyCardPage(driver).pageHeaderEmergencyCardPage();
+	}
 	
 	@When("Click on click here to recharge")
 	public void click_on_click_here_to_recharge()
@@ -186,6 +198,19 @@ public class ecardStepDef extends DriverManager {
 	{
 		new EmergencyCardPage(driver).enterAllDetailsOnStripePage();
 	}
+	
+	@When("Click on Action, click on Delete menu and click on Yes button")
+	public void clickOnDeleteButton() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnDeleteCard();
+	}
+	
+	@Then ("Emergency Card should be deleted")
+	public void validateAlert()
+	{
+		new EmergencyCardPage(driver).validateDeleteAlert();
+	}	
+	
 	
 	@When("Enter promocode url")
 	public void enterPromocodeUrl()

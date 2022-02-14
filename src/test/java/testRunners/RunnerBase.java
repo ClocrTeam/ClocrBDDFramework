@@ -4,7 +4,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         plugin = {"pretty"
-        , "html:target/Reports/cucumber"
+        , "json:target/cucumber-reports/Cucumber.json"
         , "summary"
         , "me.jvt.cucumber.report.PrettyReports:target/cucumber-reports"}
         ,features = "src/test/resources/features/"

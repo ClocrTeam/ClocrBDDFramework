@@ -19,8 +19,8 @@ Scenario Outline: User should navigate to emergency card page
 		Then Emergency Card should generate
 		When Modify the existing emrgency card
 		Then It should redirects to Update Your Emergency Card page
-		When Select another "Spain"
-		Then Emergency Card Service pop up should open
+#		When Select another "Spain"
+#		Then Emergency Card Service pop up should open
 #		When Select Clocr Emergency Card option and Click on Inform Clocr button
 		When Click on Pick your Contacts button, select contact and then click on Add button
 		Then Contacts should add
@@ -35,11 +35,15 @@ Scenario Outline: User should navigate to emergency card page
 		Then Register Your Emergency Card page should open
 		When User add details like card id "846929920305", country "Slovenia" for register card
 		Then User should able to register a card
-		When Click on Action, click on Delete menu and click on Yes button
-		Then Emergency Card should be deleted
+		When Click on Order New Card link
+		Then It should redirects to Order Emergency Cards page
+		When Select Not Interested option and click on Close button
+		Then User should redirects to Your Emergency Card page after click on Close button
 		When Click on click here to recharge
 		Then User redirects to Stripe page
 		When Enter details and click on Pay button
+		When Click on Action, click on Delete menu and click on Yes button
+		Then Emergency Card should be deleted
 		
 		Examples:
 			| email | password | country |

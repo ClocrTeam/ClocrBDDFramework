@@ -69,11 +69,11 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//span[contains(text(),'Update Your Emergency Card')]")
 	private WebElement updateEmergencyCardPageHeader;
 	
-	@FindBy(xpath = "//span[contains(@class,'dropdown-trigger')]")
-	private WebElement dropdownButton;
-	
-	@FindBy(xpath ="//input[contains(@class,'dropdown-filter')]")
-	private WebElement countrySearchText;
+//	@FindBy(xpath = "//span[contains(@class,'dropdown-trigger')]")
+//	private WebElement dropdownButton;
+//	
+//	@FindBy(xpath ="//input[contains(@class,'dropdown-filter')]")
+//	private WebElement countrySearchText;
 	
 	@FindBy(xpath="//span[contains(text(),' Ambar Clocr ')]//preceding::div[1][@role='checkbox']")
 	private WebElement addSecondContact;
@@ -130,7 +130,7 @@ public class EmergencyCardPage extends BasePage
 	WebElement registerEmergencyCardButton;
 	
 	@FindBy(xpath = "//div[contains(text(),'Registered')]")
-	WebElement registered;
+	private WebElement registered;
 	
 	@FindBy(xpath = "//a[contains(text(),' click here ')]")
 	WebElement clickHere;
@@ -156,6 +156,28 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//span[contains(text(),'This card already registered')]")
 	WebElement cardAlreadyRegisterAlert;
 	
+	@FindBy(xpath = "//button[contains(text(), 'Order New Card')]")
+	private WebElement orderNewCardLink;
+	
+	@FindBy(xpath ="//h4[contains(@id, 'modal-basic-title')]")
+	private WebElement orderEmergencyCardPageHeader;
+	
+	@FindBy(xpath = "//input[contains(@value,'None')]")
+	private WebElement notInterestedOption;
+	
+	@FindBy(xpath = "//button[contains(text(),'Close')]")
+	private WebElement closeButton;
+	
+	@FindBy(xpath ="//button[contains(text(),' Proceed To Checkout ')]")
+	private WebElement proceedToCheckoutButton;
+	
+	@FindBy(xpath ="//button[contains(text(),' Back ')]")
+	private WebElement backButton;
+	
+	@FindBy(xpath ="//input[contains(@id,'minmax-buttons')]")
+	private WebElement numberOfCardsElement;
+	
+		
 	public String GetHeaderText() {
 		return getText(pageHeader);
 	}
@@ -211,13 +233,14 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage validateIfCardAdded() throws Exception
 	{
-		try
-		{
-			if(isDisplayed(registerYourCardLink))
+//		try
+//		{
+			if((registered.isDisplayed()) || (registerYourCardLink.isDisplayed()))
 			{
+				Log.info("I am in if");
 				clickOnDeleteCard();
 			}
-		}catch(Exception e){}
+//		}catch(Exception e){}
 		
 		return this;
 	}
@@ -286,17 +309,17 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	public EmergencyCardPage selectCountry(String country) throws Exception
-	{
-		Thread.sleep(3000);
-		click(dropdownButton);
-		
-		sendKeys(countrySearchText, country);
-		submitKeys(countrySearchText, Keys.ARROW_DOWN);
-		submitKeys(countrySearchText, Keys.ENTER);
-		
-		return this;
-	}
+//	public EmergencyCardPage selectCountry(String country) throws Exception
+//	{
+//		Thread.sleep(3000);
+//		click(dropdownButton);
+//		
+//		sendKeys(countrySearchText, country);
+//		submitKeys(countrySearchText, Keys.ARROW_DOWN);
+//		submitKeys(countrySearchText, Keys.ENTER);
+//		
+//		return this;
+//	}
 	
 	public EmergencyCardPage editContact()
 	{
@@ -502,7 +525,7 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage registerACard(String cardId, String registerCountry) throws Exception
 	{
-		selectCountry(registerCountry);
+//		selectCountry(registerCountry);
 		
 //		ecardServiceOption();
 		
@@ -613,9 +636,43 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}
 	
-	public EmergencyCardPage enterPromocodeUrl()
+	public EmergencyCardPage clickOnOrderNewCardLlink()
 	{
-		driver.get("https://app.clocr.com/signup/ECDNMW");
+		click(orderNewCardLink);
+		return this;
+	}
+	
+	public EmergencyCardPage validateOrderEmergencyCardPageHeader()
+	{
+		if(isDisplayed(orderEmergencyCardPageHeader))
+		{
+			Log.info("Successfully redirects to 'Order Emergency Cards' Page");
+		}
+		else
+		{
+			Log.error("Unable to redirects to 'Order Emergency Cards' page.");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage selectNotInterestedOption()
+	{
+		click(notInterestedOption);
+		
+		click(closeButton);
+		
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnProceedToCheckOutButton()
+	{
+		click(proceedToCheckoutButton);
+		
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnBackButton()
+	{
 		return this;
 	}
 }

@@ -233,14 +233,13 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage validateIfCardAdded() throws Exception
 	{
-//		try
-//		{
+		try
+		{
 			if((registered.isDisplayed()) || (registerYourCardLink.isDisplayed()))
 			{
-				Log.info("I am in if");
 				clickOnDeleteCard();
 			}
-//		}catch(Exception e){}
+		}catch(Exception e){}
 		
 		return this;
 	}

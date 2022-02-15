@@ -41,7 +41,7 @@ public class dashboardStepDef extends DriverManager{
     @Then("User should be redirected to 'Your Digital Estate' page")
     public void navigateDigitalEstatePage() {
     	new DashboardPage(driver).ClickDigitalEstate();
-    	Assert.assertEquals( new DigitalEstatePage(driver).getHeaderText(),"Last Update:");
+    	Assert.assertEquals( new DashboardPage(driver).getHeaderText(),"Last Update:");
     }
 
     @Then("User should redirected to 'Digital Vault' page")

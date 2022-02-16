@@ -222,6 +222,11 @@ private WebDriver driver;
 	@FindBy(xpath = "//div[contains(text(),'Removed successfully')]")
 	private WebElement deleteShareContactAlertIdDocuments;
 	
+	@FindBy(xpath = "//img[@src='../../assets/new/icons/list.svg']")
+	private WebElement listViewIcon;
+	
+	@FindBy(xpath = "//th[contains(text(),'Notes')]")
+	private WebElement listViewValidateTxt;
 	
 	
 	public String getCreateFolderTitleText() {
@@ -533,6 +538,13 @@ private WebDriver driver;
 //		checkElementIsDisplayed("Delete share contact alert of ID Documents", deleteShareContactAlertIdDocuments);
 		return this;
 		
+	}
+
+	public DigitalVaultPage listViewOfDigitalVault() {
+		checkElementIsDisplayed("list view icon in DV", listViewIcon);
+		click(listViewIcon);
+		checkElementIsDisplayed("list view of DV", listViewValidateTxt);
+		return this;		
 	}
 
 

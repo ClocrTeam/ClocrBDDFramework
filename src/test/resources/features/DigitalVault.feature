@@ -32,6 +32,8 @@ Scenario Outline: User should navigate to Digital Vault page
 		Then Add Notes to ID documents folder "note"
 		When Share ID documents folder
 		Then UnShare ID documents folder
+		When Listview of Digital Vault
+		
 
 		Examples:
 			| email | password |

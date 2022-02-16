@@ -112,6 +112,9 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).unShareIdDocumentsFolder();
 	}
 	
-
+	@When("Listview of Digital Vault")
+	public void listViewOfDigitalVault() {
+		new DigitalVaultPage(driver).listViewOfDigitalVault();
+	}
 
 }

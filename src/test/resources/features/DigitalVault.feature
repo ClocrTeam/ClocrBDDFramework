@@ -19,20 +19,19 @@ Scenario Outline: User should navigate to Digital Vault page
 		Then Add Notes to sub folder "note"
 		When Share sub_folder documents
 		Then Unshare sub_folder documents
-#		When Make document emergency access of sub folder
-#		Then Delete document in sub folder
-#		When Delete folder sub folder
-#		Then Delete folder new folder "new_folder"
-#		When Rename My Kids folder to "rename_folder"
-#		Then Rollback to My Kids folder "My Kids"
-#		When Upload documents to ID documents folder
-#		When Make Document Emergency Access of Id Documents
-#		Then Add Notes to ID documents file "note"
-#		When Download file inside ID documents
-#		Then Delete uploaded document from ID documents folder
-#		Then Add Notes to ID documents folder "note"
-#		When Share ID documents folder
-#		Then UnShare ID documents folder
+		When Make document emergency access of sub folder
+		Then Delete folder sub folder
+		Then Delete folder new folder "new_folder"
+		When Rename My Kids folder to "rename_folder"
+		Then Rollback to My Kids folder "My Kids"
+		When Upload documents to ID documents folder
+		When Make Document Emergency Access of Id Documents
+		Then Add Notes to ID documents file "note"
+		When Download file inside ID documents
+		Then Delete uploaded document from ID documents folder
+		Then Add Notes to ID documents folder "note"
+		When Share ID documents folder
+		Then UnShare ID documents folder
 
 		Examples:
 			| email | password |

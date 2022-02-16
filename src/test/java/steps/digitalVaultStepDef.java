@@ -46,6 +46,16 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).unShareSubFolderDocuments();
 	}
 	
+	@When("Make document emergency access of sub folder")
+	public void makeDocumentEmergencyAccessSubFolder() throws InterruptedException {
+		new DigitalVaultPage(driver).makeDocumentEmergencyAccessSubFolder();
+	}
+	
+	@Then("Delete folder sub folder")
+	public void deleteFolderSubFolder() {
+		new DigitalVaultPage(driver).deleteFolderSubFolder();
+	}
+	
 	@Then("Delete folder new folder {string}")
 	public void deleteFolderNewFolder(String folder_name) {
 		new DigitalVaultPage(driver).deleteFolderNewFolder(folder_name);

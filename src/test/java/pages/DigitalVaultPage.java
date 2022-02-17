@@ -39,7 +39,7 @@ private WebDriver driver;
 	@FindBy(xpath = "//label[contains(text(),'Select the target folder')]/preceding::p-dropdown/child::div[1]")
 	private WebElement subFolderTargetDropdown;
 	
-	@FindBy(xpath = "//p-dropdownitem[10]//child::li")
+	@FindBy(xpath = "//p-dropdownitem[8]//child::li")
 	private WebElement subFolderNewFolderOption;
 	
 	@FindBy(xpath = "//input[@name='folderName']")

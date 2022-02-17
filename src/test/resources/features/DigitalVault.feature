@@ -5,9 +5,9 @@
 Feature: Digital Vault
 
 Background: User should be on Dashboard page
-	When Enter user name as "pankaj.clocr@yopmail.com"
+	When Enter user name as "sanak.kr@yopmail.com"
 	And click on Proceed button
-	And enter correct "Welcome@123"
+	And enter correct "Amal@123"
 	And Click on Login button
 	
 Scenario Outline: User should navigate to Digital Vault page

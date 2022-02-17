@@ -33,6 +33,15 @@ private WebDriver driver;
 	@FindBy(xpath = "//input[@id='inlineRadio1']")
 	private WebElement rootRadio;
 	
+	@FindBy(xpath = "//input[@id='inlineRadio2']")
+	private WebElement subFolderRadio;
+	
+	@FindBy(xpath = "//label[contains(text(),'Select the target folder')]/preceding::p-dropdown/child::div[1]")
+	private WebElement subFolderTargetDropdown;
+	
+	@FindBy(xpath = "//p-dropdownitem[10]//child::li")
+	private WebElement subFolderNewFolderOption;
+	
 	@FindBy(xpath = "//input[@name='folderName']")
 	private WebElement folderNameText;
 	
@@ -41,6 +50,18 @@ private WebDriver driver;
 	
 	@FindBy(xpath = "//div[contains(text(), 'Folder created')]") 
 	private WebElement folderCreateAlert;
+	
+	@FindBy(xpath = "//div[contains(text(), 'Folder successfully added')]")
+	private WebElement subFolderCreateAlert;
+	
+	@FindBy(xpath = "//span[normalize-space()='new_folder']//preceding::div[1]")
+	private WebElement newFolderImageIcon;
+	
+	@FindBy(xpath = "//span[contains(text(),'sub_folder')]")
+	private WebElement subFolderImageIcon;
+	
+	@FindBy(xpath = "//span[text()='sub_folder']//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
+	private WebElement editIconOfSubFolder;
 	
 	@FindBy(xpath = "//span[text()='new_folder']//ancestor::div[4]/descendant::clocr-icon[@icon='menu']")
 	private WebElement editIconOfNewFolder;
@@ -107,6 +128,8 @@ private WebDriver driver;
 	@FindBy(xpath = "//span[text()='ID Documents']/ancestor::div[4]/descendant::clocr-icon[@icon='dv-folder']/child::img")
 	private WebElement idDocumentsFolderIcon;
 	
+	@FindBy(xpath = "//span[text()='sub_folder']/ancestor::div[4]/descendant::clocr-icon[@icon='dv-folder']/child::img")
+	private WebElement subFolderIcon;
 	
 	@FindBy(xpath = "//img[@src='../../assets/new/icons/file.svg']")
 	private WebElement fileIconIdDocuments;
@@ -142,6 +165,9 @@ private WebDriver driver;
 	@FindBy(xpath = "//span[text()='My Docs']//ancestor::div[1]//preceding::span[1]")
 	private WebElement fileVaultLink;
 	
+	@FindBy(xpath = "//span[text()='new_folder']")
+	private WebElement newFolderLink;
+	
 	@FindBy(xpath = "//span[normalize-space()='Notes']")
 	private WebElement notesIdDocument;
 	
@@ -156,6 +182,9 @@ private WebDriver driver;
 	
 	@FindBy(xpath = "//h5[contains(text(),'ID Documents')]")
 	private WebElement shareIdDocumentsTitle;
+	
+	@FindBy(xpath ="//h5[contains(text(),'sub_folder')]")
+	private WebElement shareSubFolderTitle;
 	
 	@FindBy(xpath = "//label[contains(text(),'Select')]/preceding::p-dropdown/child::div[1]")
 	private WebElement shareIdDocumentsDropDown;
@@ -178,6 +207,9 @@ private WebDriver driver;
 	@FindBy(xpath = "//h5[contains(text(),'ID Documents')]//following-sibling::button")
 	private WebElement sharePopUpCloseBtn;
 	
+	@FindBy(xpath = "//h5[contains(text(),'sub_folder')]//following-sibling::button")
+	private WebElement sharePopUpSubFolderCloseBtn;
+	
 	@FindBy(xpath = "//span[contains(text(),'Sai Clocr')]//ancestor::app-shared-contacts-columns//ancestor::div[1]//ancestor::td//following::td[2]//descendant::clocr-icon")
 	private WebElement deleteSharedIdDocumentsIcon;
 	
@@ -190,6 +222,11 @@ private WebDriver driver;
 	@FindBy(xpath = "//div[contains(text(),'Removed successfully')]")
 	private WebElement deleteShareContactAlertIdDocuments;
 	
+	@FindBy(xpath = "//img[@src='../../assets/new/icons/list.svg']")
+	private WebElement listViewIcon;
+	
+	@FindBy(xpath = "//th[contains(text(),'Notes')]")
+	private WebElement listViewValidateTxt;
 	
 	
 	public String getCreateFolderTitleText() {
@@ -243,7 +280,106 @@ private WebDriver driver;
 		
 	}
 	
+	public DigitalVaultPage createSubFolderInNewFolder(String sub_folder_name) {
+		click(createFolder);
+		checkElementIsDisplayed("title of create folder",createFolderTitle);
+		click(subFolderRadio);
+		click(subFolderTargetDropdown);
+		click(subFolderNewFolderOption);
+		sendKeys(folderNameText, sub_folder_name);
+		click(createFolderSubmitbtn);
+		executeJavaScript("window.location.reload()");
+//		checkElementIsDisplayed("create sub folder alert",subFolderCreateAlert);
+		return this;
+		
+	}
+	
+	public DigitalVaultPage uploadDocumentToSubFolder() throws InterruptedException {
+		executeJavaScript("window.location.reload()");
+		click(newFolderImageIcon);
+		checkElementIsDisplayed("sub folder exits inside new_folder",subFolderImageIcon);
+		click(editIconOfSubFolder);
+		checkElementIsDisplayed("Upload option of sub folder", uploadToIdDocuments);
+		click(uploadToIdDocuments);
+		checkElementIsDisplayed("Add Document popup sub folder", uploadPopUpTitle);
+		String showInput = "document.getElementsByTagName('input')[1].style.display = 'block'";
+		executeJavaScript(showInput);
+		File file = new File("src/test/resources/data/Adv.xlsx");
+		sendKeys(browseBtnOfIdDocuments,file.getAbsolutePath());
+		click(saveIdDocumentBtn);
+		Thread.sleep(5000);
+		return this;
+		
+	}
+	
+
+	public DigitalVaultPage addNotesToSubFolder(String note) throws InterruptedException {
+		Thread.sleep(6000);
+		clickByJavaScript(editIconOfSubFolder);
+		checkElementIsDisplayed("notes option popup sub folder", fileNotesOptionIdDocuments);
+		click(fileNotesOptionIdDocuments);
+		checkElementIsDisplayed("Notes popup sub folder", notesPopUpTitle);
+		clear(notesTextareaIdDocuments);
+		sendKeys(notesTextareaIdDocuments, note);
+		click(saveIdDocumentBtn);
+		return this;
+		
+	}
+
+	public DigitalVaultPage shareSubFolderDocuments() throws InterruptedException {
+		Thread.sleep(2000);
+		clickByJavaScript(editIconOfSubFolder);
+		checkElementIsDisplayed("share option popup sub folder", shareIdDocuments);
+		click(shareIdDocuments);
+		checkElementIsDisplayed("share title popup of sub folder", shareSubFolderTitle);
+		click(shareIdDocumentsDropDown);
+		click(shareIdDocumentsContact);
+		click(shareDownloadBoxIdDocuments);
+		click(shareUploadBoxIdDocuments);
+		click(sharePopUpBtn);
+//		checkElementIsDisplayed("share contact alert", shareIdDocumentsAlert);
+		click(sharePopUpSubFolderCloseBtn);
+		return this;
+		
+	}
+	public DigitalVaultPage unShareSubFolderDocuments() {
+		clickByJavaScript(editIconOfSubFolder);
+		checkElementIsDisplayed("share option popup sub folder", shareIdDocuments);
+		click(shareIdDocuments);
+		checkElementIsDisplayed("share title popup of sub folder", shareSubFolderTitle);
+		click(deleteSharedIdDocumentsIcon);
+		checkElementIsDisplayed("Delete share contact popup", deleteShareContactPopUpTitle);
+		click(yesBtnDeleteContactIdDocuments);
+		click(sharePopUpSubFolderCloseBtn);
+		return this;
+		
+	}
+	
+
+	public DigitalVaultPage makeDocumentEmergencyAccessSubFolder() throws InterruptedException {
+		Thread.sleep(3000);
+		click(subFolderIcon);
+		checkElementIsDisplayed("file inside have emergency access ID documents", emergencyAccessboxIdDocumentTitle);
+		click(emergencyAccessBoxIdDocument);
+		checkElementIsDisplayed(" sub folder document file emergency access update alert", emergencyAccessIdDocumentAlert);
+		click(newFolderLink);
+		return this;
+		
+	}
+	
+	public DigitalVaultPage deleteFolderSubFolder() {
+		clickByJavaScript(editIconOfSubFolder);
+		checkElementIsDisplayed("edit of new folder",deleteMenuOfNewFolder);
+		click(deleteMenuOfNewFolder);
+		checkElementIsDisplayed("delete pop up of new folder", deletePopupOfNewFolderTitle);
+		click(deletePopupOfNewFolderBtn);
+		return this;
+		
+	}
+
+	
 	public DigitalVaultPage deleteFolderNewFolder(String folder_name) {
+		executeJavaScript("window.location.reload()");
 		clickByJavaScript(editIconOfNewFolder);
 		checkElementIsDisplayed("edit of new folder",editMenu);
 		click(deleteMenuOfNewFolder);
@@ -279,6 +415,7 @@ private WebDriver driver;
 	}
 	
 	public DigitalVaultPage uploadDocumentsToIdDocuments() throws InterruptedException {
+		executeJavaScript("window.location.reload()");
 		click(myDocsIcon);
 		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
 		click(idDocumentsEdit);
@@ -337,9 +474,11 @@ private WebDriver driver;
 	}
 
 
+	
 
 	
 	public DigitalVaultPage deleteUploadedDocumentsIdDocuments() throws InterruptedException {
+		executeJavaScript("window.location.reload()");
 		click(myDocsIcon);
 		checkElementIsDisplayed("ID documents folder", idDocumentsFolder);
 		click(idDocumentsFolderIcon);
@@ -395,17 +534,18 @@ private WebDriver driver;
 		click(deleteSharedIdDocumentsIcon);
 		checkElementIsDisplayed("Delete share contact popup", deleteShareContactPopUpTitle);
 		click(yesBtnDeleteContactIdDocuments);
+		click(sharePopUpCloseBtn);
 //		checkElementIsDisplayed("Delete share contact alert of ID Documents", deleteShareContactAlertIdDocuments);
 		return this;
 		
 	}
 
-
-
-
-
-
-
+	public DigitalVaultPage listViewOfDigitalVault() {
+		checkElementIsDisplayed("list view icon in DV", listViewIcon);
+		click(listViewIcon);
+		checkElementIsDisplayed("list view of DV", listViewValidateTxt);
+		return this;		
+	}
 
 
 

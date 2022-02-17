@@ -23,6 +23,39 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).createFolderNewFolder(folder_name);
 	}
 	
+	@Then("Create sub folder inside new_folder {string}")
+	public void createSubFolderInNewFolder(String sub_folder_name) {
+		new DigitalVaultPage(driver).createSubFolderInNewFolder(sub_folder_name);
+	}
+	
+	@When("Upload document to sub folder")
+	public void uploadDocumentToSubFolder() throws InterruptedException {
+		new DigitalVaultPage(driver).uploadDocumentToSubFolder();
+	}
+	@Then("Add Notes to sub folder {string}")
+	public void addNotesToSubFolder(String notes) throws InterruptedException {
+		new DigitalVaultPage(driver).addNotesToSubFolder(notes); 
+	}
+	@When("Share sub_folder documents")
+	public void shareSubFolderDocuments() throws InterruptedException {
+		new DigitalVaultPage(driver).shareSubFolderDocuments();
+	}
+	
+	@Then("Unshare sub_folder documents")
+	public void unShareSubFolderDocuments() {
+		new DigitalVaultPage(driver).unShareSubFolderDocuments();
+	}
+	
+	@When("Make document emergency access of sub folder")
+	public void makeDocumentEmergencyAccessSubFolder() throws InterruptedException {
+		new DigitalVaultPage(driver).makeDocumentEmergencyAccessSubFolder();
+	}
+	
+	@Then("Delete folder sub folder")
+	public void deleteFolderSubFolder() {
+		new DigitalVaultPage(driver).deleteFolderSubFolder();
+	}
+	
 	@Then("Delete folder new folder {string}")
 	public void deleteFolderNewFolder(String folder_name) {
 		new DigitalVaultPage(driver).deleteFolderNewFolder(folder_name);
@@ -79,6 +112,9 @@ public class digitalVaultStepDef extends DriverManager {
 		new DigitalVaultPage(driver).unShareIdDocumentsFolder();
 	}
 	
-
+	@When("Listview of Digital Vault")
+	public void listViewOfDigitalVault() {
+		new DigitalVaultPage(driver).listViewOfDigitalVault();
+	}
 
 }

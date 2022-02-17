@@ -14,7 +14,7 @@ public class digitalVaultStepDef extends DriverManager {
     }
 	
 	@Then("User should redirects to Digital Vault page")
-    public void redirectToDigialVaultPage()  {
+    public void redirectToDigialVaultPage() throws InterruptedException  {
 		new DigitalVaultPage(driver).validateHeader();
     }
 	

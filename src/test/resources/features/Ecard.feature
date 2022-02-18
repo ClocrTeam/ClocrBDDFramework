@@ -19,9 +19,6 @@ Scenario Outline: User should navigate to emergency card page
 		Then Emergency Card should generate
 		When Modify the existing emrgency card
 		Then It should redirects to Update Your Emergency Card page
-#		When Select another "Spain"
-#		Then Emergency Card Service pop up should open
-#		When Select Clocr Emergency Card option and Click on Inform Clocr button
 		When Click on Pick your Contacts button, select contact and then click on Add button
 		Then Contacts should add
 		When Click on Back button
@@ -44,6 +41,22 @@ Scenario Outline: User should navigate to emergency card page
 		When Enter details and click on Pay button
 		When Click on Action, click on Delete menu and click on Yes button
 		Then Emergency Card should be deleted
+		
+		Scenario Outline: Validate add contact and contact details if not added
+		When click on Emergency Card menu after to add new contact
+		Then It should redirects to Your Emergency Card page
+		When Click on Create or Register Your contact link
+		Then It should redirects to Create or Register Emergency Card page	
+		When click on Pick your contacts button
+		Then Choose your contacts for Emergency Card pop up is getting open
+		When Click on Add New button
+		Then Create page will open
+		When Add details and click on Create button
+		Then contact should add
+		When Select contact and click on Add button
+		Then Contact should add on Ecard
+		When Click on Create Your Emergency Card button
+		Then Added contact should show on card
 		
 		Examples:
 			| email | password | country |

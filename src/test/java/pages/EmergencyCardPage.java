@@ -132,7 +132,7 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath = "//div[contains(text(),'Registered')]")
 	private WebElement registered;
 	
-	@FindBy(xpath = "//a[contains(text(),' click here ')]")
+	@FindBy(xpath = "//div[contains(@class,'p-card-content')]//a[contains(text(),' click here ')]")
 	WebElement clickHere;
 	
 	@FindBy(xpath = "//div[contains(text(),'Pay with card')]")
@@ -177,7 +177,39 @@ public class EmergencyCardPage extends BasePage
 	@FindBy(xpath ="//input[contains(@id,'minmax-buttons')]")
 	private WebElement numberOfCardsElement;
 	
-		
+	@FindBy(xpath = "//h4[contains(@id,'modal-basic-title')]")
+	private WebElement chooseYourContactPopHeader;
+	
+	@FindBy(xpath = "//button[contains(text(),'Add New')]")
+	private WebElement addNewButton;
+	
+	@FindBy(xpath ="//app-clocr-contact-form//preceding::h5[1][contains(text(),'Create')]")
+	private WebElement createPageHeader;
+	
+	@FindBy(xpath = "//form[1]//following::input[1][contains(@formcontrolname,'email')]")
+	private WebElement email;
+	
+	@FindBy(xpath =  "//p-dropdown[contains(@formcontrolname,'relationship')]//following::div[1][contains(@role,'button')]")
+	private WebElement relationship;
+	
+	@FindBy(xpath ="//li[contains(@aria-label,'Child')]")
+	private WebElement childRelationship;
+	
+	@FindBy(xpath ="//button[contains(text(),' Create ')]")
+	private WebElement createButton;
+	
+	@FindBy(xpath ="//span[contains(text(),' Check Nominee ')]//preceding::div[1][@role='checkbox']")
+	private WebElement contactCheckNominee;
+	
+	@FindBy(xpath ="//app-choose-em-contacts[1]//following::div[contains(@class,'footer')]//button[1][contains(@type,'button')]")
+	private WebElement addButton;
+	
+	@FindBy(xpath ="//div[contains(text(),'Check Nominee')]")
+	private WebElement contactOnFrontCheckNominee;
+	
+	@FindBy(xpath="//img[contains(@alt,'user avatar')]")
+	private WebElement contactIconOnEcard;
+			
 	public String GetHeaderText() {
 		return getText(pageHeader);
 	}
@@ -233,18 +265,33 @@ public class EmergencyCardPage extends BasePage
 	
 	public EmergencyCardPage validateIfCardAdded() throws Exception
 	{
+//		try
+//		{
+//			if((registered.isDisplayed()) || (registerYourCardLink.isDisplayed()))
+//			{
+//				clickOnDeleteCard();
+//			}
+//		}catch(Exception e){}
+		
 		try
 		{
-			if((registered.isDisplayed()) || (registerYourCardLink.isDisplayed()))
+			try
 			{
-				clickOnDeleteCard();
+				if(registered.isDisplayed());
 			}
-		}catch(Exception e){}
+			catch(Exception e)
+			{
+				if(registerYourCardLink.isDisplayed());
+			}
+			
+			clickOnDeleteCard();
+			
+		}catch(Exception e) {}
 		
 		return this;
 	}
 	
-	public EmergencyCardPage validateCreateorRegisterYourEmergencyCardPage(String pageHeader)
+	public EmergencyCardPage validateCreateorRegisterYourEmergencyCardPage()
 	{
 		if(isDisplayed(createOrRegisterPageHeader))
 		{
@@ -572,6 +619,7 @@ public class EmergencyCardPage extends BasePage
 		
 		clickByJavaScript(deleteMenu);
 		
+		Thread.sleep(2000);
 		clickByJavaScript(yesButtonElement);
 		
 		return this;
@@ -590,7 +638,7 @@ public class EmergencyCardPage extends BasePage
 		
 		try
 		{
-			if(isDisplayed(registerTxt))
+			if(isDisplayed(registered))
 				{
 					Log.info("Emergency Card deleted successfully");
 				}
@@ -602,8 +650,9 @@ public class EmergencyCardPage extends BasePage
 		return this;
 	}	
 	
-	public EmergencyCardPage clickOnClickHereCardLink()
+	public EmergencyCardPage clickOnClickHereCardLink() throws Exception
 	{
+//		Thread.sleep(3000);
 		clickByJavaScript(clickHere);
 		return this;
 	}
@@ -674,4 +723,102 @@ public class EmergencyCardPage extends BasePage
 	{
 		return this;
 	}
+	
+	public EmergencyCardPage validateChooseContactEcardPage()
+	{
+		if(isDisplayed(chooseYourContactPopHeader))
+		{
+			Log.info("'Choose your contacts for Emergency Card' page getting open successfully");
+		}
+		else
+		{
+			Log.error("'Choose your contacts for Emergency Card' is not getting open");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage clickOnAddNewButton()
+	{
+		clickByJavaScript(addNewButton);
+		
+		return this;
+		
+	}
+	
+	public EmergencyCardPage validateCreatePageHeader()
+	{
+		if(isDisplayed(createPageHeader))
+		{
+			Log.info("Redirects to 'Create' page");
+		}
+		else
+		{
+			Log.error("Wrong page redirection");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage addDetailAndClickOnCreateButton() throws Exception
+	{
+		sendKeys(email, "check.nominee@yopmail.com");
+		
+		click(relationship);
+		
+		click(childRelationship);
+		
+		Thread.sleep(1000);
+		clickByJavaScript(createButton);
+		
+		return this;
+		
+	}
+	
+	public EmergencyCardPage validateContactAdded() throws Exception
+	{
+		Thread.sleep(1000);
+		if(contactCheckNominee.isDisplayed())
+		{
+			Log.info("Contact added successfully");
+		}
+		else
+		{
+			Log.error("Unable to add contact");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage selectAddedContactAndClickOnAddButton()
+	{
+		click(contactCheckNominee);
+		
+		click(addButton);
+		return this;
+	}
+	
+	public EmergencyCardPage validateContactAddedOnFront()
+	{
+		if(isDisplayed(contactOnFrontCheckNominee))
+		{
+			Log.info("Contact added successfully");
+		}
+		else
+		{
+			Log.error("Unable to add contact");
+		}
+		return this;
+	}
+	
+	public EmergencyCardPage validateContactAddedOnEcard()
+	{
+		if(isDisplayed(contactIconOnEcard))
+		{
+			Log.info("Contact added on Ecard successfully");
+		}
+		else
+		{
+			Log.error("Unable to add contact");
+		}
+		return this;
+	}
+	
 }

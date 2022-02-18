@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.EmergencyCardPage;
+import pages.MyContactsPage;
 import utilities.DriverManager;
 
 public class ecardStepDef extends DriverManager {
@@ -28,7 +29,7 @@ public class ecardStepDef extends DriverManager {
 	@Then("User should redirects to Create or Register Your Emergency Card page")
 	public void validateCreateYourEmergencyCardPage()
 	{
-		new EmergencyCardPage(driver).validateCreateorRegisterYourEmergencyCardPage("Create or Register Your Emergency Card");
+		new EmergencyCardPage(driver).validateCreateorRegisterYourEmergencyCardPage();
 	}
 	
 	@When("Add details and click on Create Emergency Card button")
@@ -182,7 +183,7 @@ public class ecardStepDef extends DriverManager {
 	}
 	
 	@When("Click on click here to recharge")
-	public void click_on_click_here_to_recharge()
+	public void click_on_click_here_to_recharge() throws Exception
 	{
 		new EmergencyCardPage(driver).clickOnClickHereCardLink();
 	}
@@ -212,11 +213,94 @@ public class ecardStepDef extends DriverManager {
 	}	
 	
 	
-	@When("Enter promocode url")
-	public void enterPromocodeUrl()
+	@When("click on Emergency Card menu after to add new contact")
+	public void clickOnEmergencyCardMenu() throws Exception
 	{
-		AdditionalUrl("");
-		
+		new EmergencyCardPage(driver).clickOnEmerencyMenu();
+		new EmergencyCardPage(driver).validateIfCardAdded();
+		new MyContactsPage(driver).clickOnMyContactsMenu();
+		new MyContactsPage(driver).validateContactsPageHeader();
+		new MyContactsPage(driver).deleteContactIfAdded();
+		new EmergencyCardPage(driver).clickOnEmerencyMenu();
 	}
+	
+	@Then("It should redirects to Your Emergency Card page")
+	public void validateYourEmergencyCardPageHeader()
+	{
+		new EmergencyCardPage(driver).pageHeaderEmergencyCardPage();
+	}
+	
+	@When("Click on Create or Register Your contact link")
+	public void clickOnCreteEcardLink() throws Exception
+	{
+		new EmergencyCardPage(driver).clickOnCreateOrRegisterCardLink();
+	}
+	
+	@Then("It should redirects to Create or Register Emergency Card page")
+	public void validateYourEmergencyCardPage()
+	{
+		new EmergencyCardPage(driver).validateCreateorRegisterYourEmergencyCardPage();
+	}
+	
+	@When("click on Pick your contacts button")
+	public void clickOnPickYourContactsButton() throws Exception
+	{
+		new EmergencyCardPage(driver).clickPickContact();
+	}
+	
+	@Then("Choose your contacts for Emergency Card pop up is getting open")
+	public void validateChooseContactPopUp()
+	{
+		new EmergencyCardPage(driver).validateChooseContactEcardPage();
+	}
+	
+	@When("Click on Add New button")
+	public void clickOnAddNewButton()
+	{
+		new EmergencyCardPage(driver).clickOnAddNewButton();
+	}
+	
+	@Then("Create page will open")
+	public void validateCreatePageHeader()
+	{
+		new EmergencyCardPage(driver).validateCreatePageHeader();
+	}
+	
+	@When("Add details and click on Create button")
+	public void addDetailsAndClickOnCreateButton() throws Exception
+	{
+		new EmergencyCardPage(driver).addDetailAndClickOnCreateButton();
+	}
+	
+	@Then("contact should add")
+	public void validateContactAdded() throws Exception
+	{
+		new EmergencyCardPage(driver).validateContactAdded();
+	}
+	
+	@When("Select contact and click on Add button")
+	public void selectContactAndClickOnAddButton()
+	{
+		new EmergencyCardPage(driver).selectAddedContactAndClickOnAddButton();
+	}
+	
+	@Then("Contact should add on Ecard")
+	public void validateContactAddedOnFront()
+	{
+		new EmergencyCardPage(driver).validateContactAddedOnFront();
+	}
+	
+	@When("Click on Create Your Emergency Card button")
+	public void clickOnCreateEmergencyCardButton()
+	{
+		new EmergencyCardPage(driver).createNewECard();
+	}
+	
+	@Then("Added contact should show on card")
+	public void validateContactAddedOncEcard()
+	{
+		new EmergencyCardPage(driver).validateContactAddedOnEcard();
+	}
+	
 	
 }

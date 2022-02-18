@@ -39,7 +39,7 @@ private WebDriver driver;
 	@FindBy(xpath = "//label[contains(text(),'Select the target folder')]/preceding::p-dropdown/child::div[1]")
 	private WebElement subFolderTargetDropdown;
 	
-	@FindBy(xpath = "//p-dropdownitem[10]//child::li")
+	@FindBy(xpath = "//p-dropdownitem[8]//child::li")
 	private WebElement subFolderNewFolderOption;
 	
 	@FindBy(xpath = "//input[@name='folderName']")
@@ -239,20 +239,13 @@ private WebDriver driver;
 	public String GetPageTitle() {
 		return getText(pageTitle);
 	}
-	public DigitalVaultPage validateHeader() {
-		
-		if(isDisplayed(pageHeader)) {
-			Log.info("Validate Digital Vault page header");
-		}
-		else {
-			Log.info("Not Validate Digital Vault page header");
-			
-		}
-		
+	public DigitalVaultPage validateHeader() throws InterruptedException {
+		Thread.sleep(2000);
+		checkElementIsDisplayed("page header of DigitalVault", pageHeader);
 		return this;
 		
 	}
-	public DashboardPage clickDashboard() {
+	public DashboardPage clickDashboard() throws InterruptedException {
 		click(dashboard);
 		return new DashboardPage(driver);
 	}
